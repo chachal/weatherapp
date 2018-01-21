@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="index">
+   <head>
+     <title>WeatherApp</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="index.js"></script>
+   </head>
+   <body>
+      <div ng-controller="indexmap">
+          <h2>interactive map, markers for observation points, hover for current temp, click to country page</h2>
+      </div>
+      <div ng-controller="indexsearch">
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
+          <md-item-template>
+            <span md-highlight-text="searchText">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+            No matches found.
+          </md-not-found>
+        </md-autocomplete>
+      </div>
+      <div ng-controller="indexmap">
+          <h2>popup quickadd temp</h2>
+      </div>
+      <div ng-controller="extremesnow">
+        <table>
+          <thead>
+            <th>{{coldest now}}</th>
+            <th>{{hottest now}}</th>
+          </thead>
+        </table>
+      </div>
+   </body>
+</html>

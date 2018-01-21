@@ -1,0 +1,30 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Ilmastotieteilijät tarvitsevat uuden web-sovelluksen, jolla voivat seurata säätilan muutoksia ympäri maailmaa.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "graphql": "^0.12.3",
+    "mongoose": "^5.0.1",
+    "react": "^16.2.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chachal/weatherapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chachal/weatherapp/issues"
+  },
+  "homepage": "https://github.com/chachal/weatherapp#readme"
+}
