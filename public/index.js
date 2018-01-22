@@ -1,5 +1,5 @@
 // index page -----------------------------------
-var index = angular.module('index', ['ng', 'ngMaterial', 'ngAria', 'ngAnimate'])
+var index = angular.module('index', ['ngMaterial'])
 
 index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
@@ -15,7 +15,8 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
   $scope.searchTextChange = function(searchtxt) {
       $scope.matches = [];
       $scope.locations.forEach( function(entry) {
-          if (entry.city.toLowerCase().indexOf(searchtxt) >= 0) {
+        var location = entry.city + ", " + entry.country;
+          if (location.toLowerCase().indexOf(searchtxt) >= 0 && searchtxt != ",") {
               $scope.matches.push(entry);
           }
       })

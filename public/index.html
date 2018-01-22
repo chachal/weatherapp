@@ -14,6 +14,7 @@
       <div ng-controller="IndexMap">
           <h2>interactive map, markers for observation points, hover for current temp, click to country page</h2>
       </div>
+      <br/>
       <div ng-controller="IndexSearch"
         <md-content>
           <form ng-submit="$event.preventDefault()">
@@ -27,14 +28,45 @@
                 md-dropdown-items="2"
                 md-dropdown-position="bottom"
                 placeholder="Find an observation point">
-              <span>{{ entry.city }}, {{ entry.country }}</span>
-              </md-autocomplete>
+                <md-item-template>
+                    <span>{{ entry.city }}, {{ entry.country }}</span>
+                </md-item-template>
+                <md-not-found>
+                  No matches to {{searchText}}
+                </md-not-found>
+                </md-autocomplete>
+                <md-button>Go</md-button>
           </form>
         </md-content>
       </div>
+      <br/>
       <div ng-controller="QuickAddTemp">
-          <h2>popup quickadd temp</h2>
+        <div ng-controller="IndexSearch">
+          <md-content>
+            <form ng-submit="$event.preventDefault()">
+              <md-autocomplete
+                md-no-cache="true"
+                md-items="entry in matches"
+                md-search-text="searchText"
+                md-search-text-change="searchTextChange(searchText)"
+                md-item-text="entry.city + ', ' + entry.country"
+                md-clear-button="false"
+                md-dropdown-items="2"
+                md-dropdown-position="bottom"
+                placeholder="Choose an observation point">
+                <md-item-template>
+                    <span>{{ entry.city }}, {{ entry.country }}</span>
+                </md-item-template>
+                <md-not-found>
+                  No matches to {{searchText}}
+                </md-not-found>
+                </md-autocomplete>
+                <md-button>Go</md-button>
+            </form>
+          </md-content>
+        </div>
       </div>
+      <br/>
       <div ng-controller="ExtremesNow">
         <table>
           <thead>
