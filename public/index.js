@@ -1,26 +1,24 @@
 // index page -----------------------------------
-
-var index = angular.module('index', [])
+var index = angular.module('index', ['ng', 'ngMaterial', 'ngAria', 'ngAnimate'])
 
 index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-index.controller('IndexSearch', function($scope, $http) {
-   $http.get('/api/locdata')
-   .then(function(res, err) {
-        $scope.locations = res.data
-    });
-});
-/*
-index.controller('IndexSearch', ['$scope', '$http', IndexSearch]);
+index.controller('IndexSearch', IndexSearch);
 
-function IndexSearch($scope, $http) {
-   $http.get('/api/locdata')
-   .then(function(res, err) {
-        $scope.locations = res.data
-    });
-};*/
+function IndexSearch($scope, $http, $q) {
+
+
+  
+     $http.get('/api/locdata')
+     .then(function(res, err) {
+          $scope.locations = res.data
+      });
+
+
+  };
+
 
 index.controller('QuickAddTemp', function($scope) {
     $scope.name1 = '';

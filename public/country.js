@@ -17,6 +17,10 @@ country.controller('CountryExtremes', function($scope) {
     $scope.name1 = '';
 });
 
+country.controller('AddTemp', function($scope) {
+    $scope.name1 = '';
+});
+
 country.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
 });
