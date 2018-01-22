@@ -9,18 +9,18 @@ country.controller('ctrl2', function($scope, $http) {
     });
 });
 
-country.controller('currenttemp', function($scope) {
+country.controller('CurrentTemp', function($scope) {
     $scope.name1 = '';
 });
 
-country.controller('countryextremes', function($scope) {
+country.controller('CountryExtremes', function($scope) {
     $scope.name1 = '';
 });
 
-country.controller('temphistorygraph', function($scope) {
+country.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
 });
 
-country.controller('temphistorylist', function($scope) {
+country.controller('TempHistoryList', function($scope) {
     $scope.name1 = '';
 });

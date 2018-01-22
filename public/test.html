@@ -1,14 +1,21 @@
 <!doctype html>
-<html ng-app="index">
+<html ng-app="autocompleteDemo">
    <head>
      <title>WeatherApp</title>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="index.js"></script>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+     <script src="index.js"></script>
    </head>
    <body>
-      <div ng-controller="indexsearch">
-          <h2>{{location}}</h2>
+      <div ng-controller="IndexSearch"
+        <ul>
+          <li ng-repeat="location in locations"/>
+        </ul>
       </div>
    </body>
 </html>
