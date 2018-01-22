@@ -27,6 +27,7 @@
                 md-clear-button="false"
                 md-dropdown-items="2"
                 md-dropdown-position="bottom"
+                md-require-match="true"
                 placeholder="Find an observation point">
                 <md-item-template>
                     <span>{{ entry.city }}, {{ entry.country }}</span>
@@ -35,45 +36,22 @@
                   No matches to {{searchText}}
                 </md-not-found>
                 </md-autocomplete>
-                <md-button>Go</md-button>
+                <md-button>GO</md-button>
           </form>
         </md-content>
       </div>
       <br/>
-      <div ng-controller="QuickAddTemp">
-        <div ng-controller="IndexSearch">
+      <div ng-controller="QuickAddTempDialog">
+
           <md-content>
-            <form ng-submit="$event.preventDefault()">
-              <md-autocomplete
-                md-no-cache="true"
-                md-items="entry in matches"
-                md-search-text="searchText"
-                md-search-text-change="searchTextChange(searchText)"
-                md-item-text="entry.city + ', ' + entry.country"
-                md-clear-button="false"
-                md-dropdown-items="2"
-                md-dropdown-position="bottom"
-                placeholder="Choose an observation point">
-                <md-item-template>
-                    <span>{{ entry.city }}, {{ entry.country }}</span>
-                </md-item-template>
-                <md-not-found>
-                  No matches to {{searchText}}
-                </md-not-found>
-                </md-autocomplete>
-                <md-button>Go</md-button>
-            </form>
+              <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
           </md-content>
-        </div>
+
       </div>
       <br/>
-      <div ng-controller="ExtremesNow">
-        <table>
-          <thead>
-            <th>coldest now</th>
-            <th>hottest now</th>
-          </thead>
-        </table>
+      <div ng-controller="ExtremesNow" layout="row">
+            <p>coldest now</p>
+            <p>hottest now</p>
       </div>
    </body>
 </html>

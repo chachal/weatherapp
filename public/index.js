@@ -16,7 +16,7 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
       $scope.matches = [];
       $scope.locations.forEach( function(entry) {
         var location = entry.city + ", " + entry.country;
-          if (location.toLowerCase().indexOf(searchtxt) >= 0 && searchtxt != ",") {
+          if (location.toLowerCase().indexOf(searchtxt.toLowerCase()) >= 0 && searchtxt != ",") {
               $scope.matches.push(entry);
           }
       })
@@ -25,8 +25,16 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
 
 });
 
-index.controller('QuickAddTemp', function($scope) {
-    $scope.name1 = '';
+index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
+    $scope.openDialog = function($event) {
+        $mdDialog.show( {
+            templateUrl: 'quickadd.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose:true
+        })
+    }
+
 });
 
 index.controller('ExtremesNow', function($scope) {

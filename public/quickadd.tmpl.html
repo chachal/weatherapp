@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="index">
+   <head>
+     <title>WeatherApp</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+     <script src="index.js"></script>
+   </head>
+   <body>
+     <md-dialog>
+       <md-dialog-content ng-cloak>
+         <div ng-controller="IndexSearch" layout="row">
+           <md-content>
+             <form ng-submit="$event.preventDefault()">
+               <md-autocomplete
+                 md-no-cache="true"
+                 md-items="entry in matches"
+                 md-search-text="searchText"
+                 md-search-text-change="searchTextChange(searchText)"
+                 md-item-text="entry.city + ', ' + entry.country"
+                 md-clear-button="false"
+                 md-dropdown-items="2"
+                 md-dropdown-position="bottom"
+                 md-require-match="true"
+                 placeholder="Choose an observation point">
+                 <md-item-template>
+                     <span>{{ entry.city }}, {{ entry.country }}</span>
+                 </md-item-template>
+                 <md-not-found>
+                   No matches to {{searchText}}
+                 </md-not-found>
+                 </md-autocomplete>
+                 <md-input-container>
+                   <input type="number" placeholder="Temperature (C)"/ md-no-float="false">
+                 </md-input-container>
+                 <md-dialog-actions>
+                   <md-button ng-click="finish($event)">ADD</md-button>
+                 </md-dialog-actions>
+             </form>
+           </md-content>
+         </div>
+       </md-dialog-content>
+     </md-dialog>
+   </body>
+</html>

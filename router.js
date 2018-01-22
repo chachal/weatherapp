@@ -20,7 +20,7 @@ app.get('/test', (req, res) => {
 
 // api -----------------------------------
 app.get('/api/locdata', (req, res) => {
-    models.find({}, 'country city -_id', function(err, location) {
+    models.find({}, 'country city', function(err, location) {
         if (err) {
             res.send(err);
         }
