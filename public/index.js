@@ -5,20 +5,14 @@ index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-index.controller('IndexSearch', IndexSearch);
+index.controller('IndexSearch', function($scope, $http, $q) {
 
-function IndexSearch($scope, $http, $q) {
-
-
-  
      $http.get('/api/locdata')
      .then(function(res, err) {
           $scope.locations = res.data
       });
 
-
-  };
-
+});
 
 index.controller('QuickAddTemp', function($scope) {
     $scope.name1 = '';

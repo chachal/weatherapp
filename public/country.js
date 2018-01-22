@@ -28,3 +28,20 @@ country.controller('TempHistoryGraph', function($scope) {
 country.controller('TempHistoryList', function($scope) {
     $scope.name1 = '';
 });
+
+
+
+
+country.controller('test', test);
+
+function test($scope, $http, $q) {
+  return getLocations();
+
+  function getLocations() {
+     $http.get('/api/locdata')
+     .then(function(res, err) {
+          $scope.locations = res.data
+      });
+  }
+
+};
