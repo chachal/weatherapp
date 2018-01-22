@@ -19,12 +19,14 @@
           <form ng-submit="$event.preventDefault()">
               <md-autocomplete
                 md-no-cache="true"
-                md-items="entry in locations"
+                md-items="entry in matches"
                 md-search-text="searchText"
+                md-search-text-change="searchTextChange(searchText)"
                 md-item-text="entry.city + ', ' + entry.country"
                 md-clear-button="false"
                 md-dropdown-items="2"
-                placeholder="put input">
+                md-dropdown-position="bottom"
+                placeholder="Find an observation point">
               <span>{{ entry.city }}, {{ entry.country }}</span>
               </md-autocomplete>
           </form>

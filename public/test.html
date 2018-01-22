@@ -13,7 +13,7 @@
    <body>
 
      <div ng-controller="IndexSearch">
-     <h2>{{locations}}</h2>
+     <h2 ng-if="matches != ''"> {{matches}} </h2>
      </div>
       <div ng-controller="IndexSearch">
         <ul ng-repeat="i in locations">
@@ -22,20 +22,22 @@
       </div>
 
       <div ng-controller="IndexSearch"
-        <md-content>
-          <form ng-submit="$event.preventDefault()">
-              <md-autocomplete
-                md-no-cache="true"
-                md-items="entry in locations"
-                md-search-text="searchText"
-                md-item-text="entry.city"
-                md-clear-button="false"
-                md-dropdown-items="2"
-                placeholder="put input">
-              <span>{{ entry.city }}, {{ entry.country }}</span>
-              </md-autocomplete>
-          </form>
-        </md-content>
+      <md-content>
+        <form ng-submit="$event.preventDefault()">
+            <md-autocomplete
+              md-no-cache="true"
+              md-items="entry in matches"
+              md-search-text="searchText"
+              md-search-text-change="searchTextChange(searchText)"
+              md-item-text="entry.city + ', ' + entry.country"
+              md-clear-button="false"
+              md-dropdown-items="2"
+              md-dropdown-position="bottom"
+              placeholder="Find an observation point">
+            <span>{{ entry.city }}, {{ entry.country }}</span>
+            </md-autocomplete>
+        </form>
+      </md-content>
       </div>
 
    </body>
