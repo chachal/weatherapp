@@ -7,10 +7,14 @@ index.controller('IndexMap', function($scope) {
 
 index.controller('IndexSearch', function($scope, $http, $q) {
 
-     $http.get('/api/locdata')
-     .then(function(res, err) {
-          $scope.locations = res.data
-      });
+  $http.get('/api/locdata')
+  .then(function(res, err) {
+      $scope.locations = res.data
+  });
+
+  $scope.searchText = '';
+
+
 
 });
 

@@ -14,8 +14,21 @@
       <div ng-controller="IndexMap">
           <h2>interactive map, markers for observation points, hover for current temp, click to country page</h2>
       </div>
-      <div ng-controller="IndexSearch">
-        <h2>autofill search</h2>
+      <div ng-controller="IndexSearch"
+        <md-content>
+          <form ng-submit="$event.preventDefault()">
+              <md-autocomplete
+                md-no-cache="true"
+                md-items="entry in locations"
+                md-search-text="searchText"
+                md-item-text="entry.city + ', ' + entry.country"
+                md-clear-button="false"
+                md-dropdown-items="2"
+                placeholder="put input">
+              <span>{{ entry.city }}, {{ entry.country }}</span>
+              </md-autocomplete>
+          </form>
+        </md-content>
       </div>
       <div ng-controller="QuickAddTemp">
           <h2>popup quickadd temp</h2>

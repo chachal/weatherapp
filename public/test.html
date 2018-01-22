@@ -11,12 +11,13 @@
      <script src="index.js"></script>
    </head>
    <body>
+
      <div ng-controller="IndexSearch">
      <h2>{{locations}}</h2>
      </div>
       <div ng-controller="IndexSearch">
         <ul ng-repeat="i in locations">
-          <li>{{i.city}}, {{i.country}}</li>
+          <li>{{i}}</li>
         </ul>
       </div>
 
@@ -25,13 +26,13 @@
           <form ng-submit="$event.preventDefault()">
               <md-autocomplete
                 md-no-cache="true"
-                md-items="location in locations"
+                md-items="entry in locations"
                 md-search-text="searchText"
-                md-item-text="location.display"
+                md-item-text="entry.city"
                 md-clear-button="false"
+                md-dropdown-items="2"
                 placeholder="put input">
-
-              <span>{{ location.display }}</span>
+              <span>{{ entry.city }}, {{ entry.country }}</span>
               </md-autocomplete>
           </form>
         </md-content>
