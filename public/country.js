@@ -1,6 +1,6 @@
 // country page -----------------------------------
 
-var country = angular.module('country', [])
+var country = angular.module('country', ['ngMaterial'])
 
 country.controller('ctrl2', function($scope, $http) {
    $http.get('/api/countrydata')
@@ -17,8 +17,15 @@ country.controller('CountryExtremes', function($scope) {
     $scope.name1 = '';
 });
 
-country.controller('AddTemp', function($scope) {
-    $scope.name1 = '';
+country.controller('AddTemp', function($scope, $mdDialog) {
+  $scope.openDialog = function($event) {
+      $mdDialog.show( {
+          templateUrl: 'countrytempadd.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: $event,
+          clickOutsideToClose:true
+      })
+  }
 });
 
 country.controller('TempHistoryGraph', function($scope) {

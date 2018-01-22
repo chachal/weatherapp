@@ -6,12 +6,10 @@ index.controller('IndexMap', function($scope) {
 });
 
 index.controller('IndexSearch', function($scope, $http, $q, $log) {
-
   $http.get('/api/locdata')
   .then(function(res, err) {
       $scope.locations = res.data
   });
-
   $scope.searchTextChange = function(searchtxt) {
       $scope.matches = [];
       $scope.locations.forEach( function(entry) {
@@ -21,8 +19,6 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
           }
       })
   }
-
-
 });
 
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
@@ -34,7 +30,6 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             clickOutsideToClose:true
         })
     }
-
 });
 
 index.controller('ExtremesNow', function($scope) {
