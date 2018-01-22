@@ -13,12 +13,12 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
   $scope.searchTextChange = function(searchtxt) {
       $scope.matches = [];
       $scope.locations.forEach( function(entry) {
-        var location = entry.city + ", " + entry.country;
-          if (location.toLowerCase().indexOf(searchtxt.toLowerCase()) >= 0 && searchtxt != ",") {
-              $scope.matches.push(entry);
-          }
-      })
-  }
+          var location = entry.city + ", " + entry.country;
+              if (location.toLowerCase().indexOf(searchtxt.toLowerCase()) >= 0 && searchtxt != ",") {
+                  $scope.matches.push(entry);
+              }
+          })
+      }
 });
 
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
@@ -29,6 +29,9 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             targetEvent: $event,
             clickOutsideToClose:true
         })
+    }
+    $scope.cancel = function() {
+        $mdDialog.cancel();
     }
 });
 
