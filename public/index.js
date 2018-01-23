@@ -21,6 +21,11 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
       }
 });
 
+index.controller('GoToLocation', function($scope) {
+
+
+});
+
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
     $scope.openDialog = function($event) {
         $mdDialog.show( {

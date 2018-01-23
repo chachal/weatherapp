@@ -16,7 +16,7 @@
          <div ng-controller="IndexSearch" layout="row">
            <h2>Add a temperature observation</h2>
              <md-content>
-               <form ng-submit="$event.preventDefault()">
+               <form ng-submit="$event.preventDefault()" name="quickAddField">
                  <md-autocomplete
                    md-no-cache="true"
                    md-items="entry in matches"
@@ -40,7 +40,7 @@
                    </md-input-container>
                    <md-dialog-actions>
                      <md-button type="button" ng-click="cancel()">CANCEL</md-button>
-                     <md-button ng-click="finish($event)">ADD</md-button>
+                     <md-button ng-click="finish($event)" ng-disabled="quickAddField.$invalid || quickAddField.$pristine">ADD</md-button>
                    </md-dialog-actions>
                </form>
              </md-content>

@@ -17,7 +17,7 @@
       <br/>
       <div ng-controller="IndexSearch"
         <md-content>
-          <form ng-submit="$event.preventDefault()">
+          <form ng-submit="$event.preventDefault()" name="indexSearchField">
               <md-autocomplete
                 md-no-cache="true"
                 md-items="entry in matches"
@@ -36,7 +36,7 @@
                   No matches to {{searchText}}
                 </md-not-found>
                 </md-autocomplete>
-                <md-button>GO</md-button>
+                <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine">GO</md-button>
           </form>
         </md-content>
       </div>
