@@ -8,11 +8,12 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+     <script src="index.js"></script>
      <script src="location.js"></script>
    </head>
    <body>
-     <div>
-       <h1> city, country </h1>
+     <div ng-controller="ShowLocation">
+       <h1> {{locationData}}, {{locationData.country}} </h1>
      </div>
      <div ng-controller="CurrentTemp">
        <h2> current temp </h2>

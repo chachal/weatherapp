@@ -1,11 +1,16 @@
 // index page -----------------------------------
 var index = angular.module('index', ['ngMaterial'])
 
+index.factory('SearchData', function() {
+    var selectedLocationData = "";
+    return selectedLocationData;
+});
+
 index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-index.controller('IndexSearch', function($scope, $http, $q, $log) {
+index.controller('IndexSearch', function($scope, $http, SearchData) {
   $http.get('/api/locdata')
   .then(function(res, err) {
       $scope.locations = res.data
@@ -19,9 +24,10 @@ index.controller('IndexSearch', function($scope, $http, $q, $log) {
               }
           })
       }
-});
-
-index.controller('GoToLocation', function($scope) {
+  selectedLocation = "";
+  if (selectedLocation) {
+      SearchData.selectedLocationData = selectedLocation;
+  }
 });
 
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {

@@ -37,7 +37,8 @@
                   No matches to {{searchText}}
                 </md-not-found>
                 </md-autocomplete>
-                <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-href="http://localhost:8080/location?{{selectedLocation._id}}">GO</md-button>
+                <h2>{{ selectedLocationData }}</h2>
+                    <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-href="http://localhost:8080/location?{{selectedLocation._id}}">GO</md-button>
           </form>
         </md-content>
       </div>

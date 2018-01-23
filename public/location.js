@@ -1,6 +1,5 @@
 // location page -----------------------------------
-
-var locationMod = angular.module('location', ['ngMaterial'])
+var locationMod = angular.module('location', ['ngMaterial', 'index'])
 
 locationMod.controller('ctrl2', function($scope, $http) {
    $http.get('/api/locationdata')
@@ -9,8 +8,12 @@ locationMod.controller('ctrl2', function($scope, $http) {
     });
 });
 
-locationMod.controller('CurrentTemp', function($scope) {
-    $scope.name1 = '';
+locationMod.controller('ShowLocation', function($scope, SearchData) {
+    $scope.locationData = SearchData.selectedLocationData;
+});
+
+locationMod.controller('CurrentTemp', function($scope, SearchData) {
+
 });
 
 locationMod.controller('LocationExtremes', function($scope) {
