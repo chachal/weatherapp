@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendfile('./public/index.html')
 });
 
-app.get('/location', (req, res) => {
+app.get('/location/*', (req, res) => {
     res.sendFile(__dirname + '/public/location.html')
 });
 

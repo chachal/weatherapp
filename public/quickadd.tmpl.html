@@ -20,13 +20,14 @@
                  <md-autocomplete
                    md-no-cache="true"
                    md-items="entry in matches"
+                   md-item-text="entry.city + ', ' + entry.country"
                    md-search-text="searchText"
                    md-search-text-change="searchTextChange(searchText)"
-                   md-item-text="entry.city + ', ' + entry.country"
                    md-clear-button="false"
                    md-dropdown-items="2"
                    md-dropdown-position="bottom"
                    md-require-match="true"
+                   md-selected-item="selectedLocation"
                    placeholder="Country or city">
                    <md-item-template>
                        <span>{{ entry.city }}, {{ entry.country }}</span>

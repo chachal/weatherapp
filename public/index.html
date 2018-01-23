@@ -21,13 +21,14 @@
               <md-autocomplete
                 md-no-cache="true"
                 md-items="entry in matches"
+                md-item-text="entry.city + ', ' + entry.country"
                 md-search-text="searchText"
                 md-search-text-change="searchTextChange(searchText)"
-                md-item-text="entry.city + ', ' + entry.country"
                 md-clear-button="false"
                 md-dropdown-items="2"
                 md-dropdown-position="bottom"
                 md-require-match="true"
+                md-selected-item="selectedLocation"
                 placeholder="Find an observation point">
                 <md-item-template>
                     <span>{{ entry.city }}, {{ entry.country }}</span>
@@ -36,7 +37,7 @@
                   No matches to {{searchText}}
                 </md-not-found>
                 </md-autocomplete>
-                <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine">GO</md-button>
+                <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-href="http://localhost:8080/location/{{selectedLocation.city}}-{{selectedLocation.country}}">GO</md-button>
           </form>
         </md-content>
       </div>
