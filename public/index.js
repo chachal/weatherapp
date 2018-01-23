@@ -32,11 +32,17 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             targetEvent: $event,
             clickOutsideToClose:true
         })
-    }
+    };
     $scope.cancel = function() {
         $mdDialog.cancel();
-    }
+    };
 });
+
+index.controller('TempInit', function($scope) {
+    $scope.observation = {
+        temperature: 0
+    };
+})
 
 index.controller('ExtremesNow', function($scope) {
     $scope.name1 = '';

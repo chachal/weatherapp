@@ -31,6 +31,12 @@ locationMod.controller('AddTemp', function($scope, $mdDialog) {
   }
 });
 
+locationMod.controller('TempInit', function($scope) {
+    $scope.observation = {
+        temperature: 0
+    };
+});
+
 locationMod.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
 });

@@ -4,19 +4,17 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var models = require('./model.js');
+app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-    res.sendfile('./public/index.html')
+app.get('', (req, res) => {
+    res.sendFile(__dirname + './public/index.html')
 });
 
-app.get('/location/*', (req, res) => {
+app.get('/location/', (req, res) => {
     res.sendFile(__dirname + '/public/location.html')
 });
 
-app.get('/test', (req, res) => {
-    res.sendFile(__dirname + '/public/test.html')
-});
 
 // api -----------------------------------
 app.get('/api/locdata', (req, res) => {

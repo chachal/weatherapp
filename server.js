@@ -7,7 +7,7 @@ const app = express();
 const mongodb = 'mongodb://localhost/weatherapp';
 mongoose.connect(mongodb);
 
-app.use(express.static('public'));
+
 app.use(require('./router.js'))
 
 const port = 8080;
