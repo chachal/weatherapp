@@ -10,8 +10,8 @@ app.get('/', (req, res) => {
     res.sendfile('./public/index.html')
 });
 
-app.get('/country', (req, res) => {
-    res.sendFile(__dirname + '/public/country.html')
+app.get('/location', (req, res) => {
+    res.sendFile(__dirname + '/public/location.html')
 });
 
 app.get('/test', (req, res) => {
@@ -20,20 +20,20 @@ app.get('/test', (req, res) => {
 
 // api -----------------------------------
 app.get('/api/locdata', (req, res) => {
-    models.find({}, 'country city', function(err, location) {
+    models.find({}, 'country city', function(err, locationData) {
         if (err) {
             res.send(err);
         }
-        res.json(location);
+        res.json(locationData);
     });
 });
 
 app.get('/api/obsdata', (req, res) => {
-    models.find(function(err, observation) {
+    models.find(function(err, observationData) {
         if (err) {
             res.send(err);
         }
-        res.json(observation);
+        res.json(observationData);
     });
 });
 
