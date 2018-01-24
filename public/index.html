@@ -2,6 +2,7 @@
 <html ng-app="index">
    <head>
      <title>WeatherApp</title>
+     <base href="/">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
@@ -34,11 +35,10 @@
                     <span>{{ entry.city }}, {{ entry.country }}</span>
                 </md-item-template>
                 <md-not-found>
-                  No matches to {{searchText}}
+                  No matches to {{ searchText }}
                 </md-not-found>
                 </md-autocomplete>
-                <h2>{{ selectedLocationData }}</h2>
-                    <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-href="http://localhost:8080/location?{{selectedLocation._id}}">GO</md-button>
+                    <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-click="goToLocation(selectedLocation)">GO</md-button>
           </form>
         </md-content>
       </div>

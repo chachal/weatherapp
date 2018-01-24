@@ -2,6 +2,7 @@
 <html ng-app="location">
    <head>
      <title>WeatherApp</title>
+     <base href="/">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
@@ -13,7 +14,7 @@
    </head>
    <body>
      <div ng-controller="ShowLocation">
-       <h1> {{locationData}}, {{locationData.country}} </h1>
+       <h1> {{ currentCity }}, {{ currentCountry }} </h1>
      </div>
      <div ng-controller="CurrentTemp">
        <h2> current temp </h2>

@@ -1,16 +1,11 @@
 // index page -----------------------------------
 var index = angular.module('index', ['ngMaterial'])
 
-index.factory('SearchData', function() {
-    var selectedLocationData = "";
-    return selectedLocationData;
-});
-
 index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-index.controller('IndexSearch', function($scope, $http, SearchData) {
+index.controller('IndexSearch', function($scope, $http, $window) {
   $http.get('/api/locdata')
   .then(function(res, err) {
       $scope.locations = res.data
@@ -22,11 +17,10 @@ index.controller('IndexSearch', function($scope, $http, SearchData) {
               if (location.toLowerCase().indexOf(searchtxt.toLowerCase()) >= 0 && searchtxt != ",") {
                   $scope.matches.push(entry);
               }
-          })
-      }
-  selectedLocation = "";
-  if (selectedLocation) {
-      SearchData.selectedLocationData = selectedLocation;
+      })
+  }
+  $scope.goToLocation = function(selectedLocation) {
+      $window.location.href = ('/location?city=' + selectedLocation.city + '&country=' + selectedLocation.country);
   }
 });
 
