@@ -16,9 +16,9 @@
           <h2>interactive map, markers for observation points, hover for current temp, click to country page</h2>
       </div>
       <br/>
-      <div ng-controller="IndexSearch"
+      <div ng-controller="LocationSearch"
         <md-content>
-          <form ng-submit="$event.preventDefault()" name="indexSearchField">
+          <form ng-submit="$event.preventDefault()" name="locationSearchField">
               <md-autocomplete
                 md-no-cache="true"
                 md-items="entry in matches"
@@ -38,7 +38,7 @@
                   No matches to {{ searchText }}
                 </md-not-found>
                 </md-autocomplete>
-                    <md-button ng-disabled="indexSearchField.$invalid || indexSearchField.$pristine" ng-click="goToLocation(selectedLocation)">GO</md-button>
+                    <md-button ng-disabled="locationSearchField.$invalid || locationSearchField.$pristine" ng-click="goToLocation(selectedLocation)">GO</md-button>
           </form>
         </md-content>
       </div>

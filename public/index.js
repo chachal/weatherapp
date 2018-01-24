@@ -5,7 +5,8 @@ index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-index.controller('IndexSearch', function($scope, $http, $window) {
+// autocomplete search & redirect to selected location page -----------------------------------
+index.controller('LocationSearch', function($scope, $http, $window) {
   $http.get('/api/locdata')
   .then(function(res, err) {
       $scope.locations = res.data
@@ -24,6 +25,7 @@ index.controller('IndexSearch', function($scope, $http, $window) {
   }
 });
 
+// dialog for quicly adding observations to a selected location -----------------------------------
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
     $scope.openDialog = function($event) {
         $mdDialog.show( {
@@ -38,11 +40,25 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
     };
 });
 
-index.controller('TempInit', function($scope) {
+// sets initial temperature in quick add dialog to zero, and submits the observation -----------------------------------
+index.controller('SubmitTemp', function($scope, $http) {
     $scope.observation = {
         temperature: 0
     };
-})
+    var currentTime = new Date;
+    $scope.submitObservation = function(selectedLocation, selectedTemperature) {
+        var entryData = {
+            'city': selectedLocation.city,
+            'country': selectedLocation.country,
+            'temperature': selectedTemperature,
+            'created': currentTime
+        }
+        $http.post('/api/obsdata', entryData)
+        .then(function(res, err) {
+            // flash text or something
+        })
+    }
+});
 
 index.controller('ExtremesNow', function($scope) {
     $scope.name1 = '';

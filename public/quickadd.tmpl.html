@@ -13,7 +13,7 @@
    <body>
      <md-dialog>
        <md-dialog-content ng-cloak>
-         <div ng-controller="IndexSearch" layout="row">
+         <div ng-controller="LocationSearch" layout="row">
            <h2>Add a temperature observation</h2>
              <md-content>
                <form ng-submit="$event.preventDefault()" name="quickAddForm">
@@ -36,15 +36,15 @@
                      No matches to {{searchText}}
                    </md-not-found>
                    </md-autocomplete>
-                   <div ng-controller="TempInit">
+                   <div ng-controller="SubmitTemp">
                        <md-input-container>
                          <input type="number" placeholder="Temperature (°C)" name="temperature" ng-model="observation.temperature"/>
                        </md-input-container>
+                       <md-dialog-actions>
+                         <md-button type="button" ng-click="cancel()">CANCEL</md-button>
+                         <md-button ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine" ng-click="submitObservation(selectedLocation, observation.temperature)">ADD</md-button>
+                       </md-dialog-actions>
                    </div>
-                   <md-dialog-actions>
-                     <md-button type="button" ng-click="cancel()">CANCEL</md-button>
-                     <md-button ng-click="finish($event)" ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine">ADD</md-button>
-                   </md-dialog-actions>
                </form>
              </md-content>
          </div>

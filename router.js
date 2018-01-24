@@ -4,7 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var models = require('./model.js');
+var Locations = models.LocationModel;
+var Observations = models.ObservationModel;
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
@@ -18,7 +21,7 @@ app.get('/location', (req, res) => {
 
 // api -----------------------------------
 app.get('/api/locdata', (req, res) => {
-    models.find({}, 'country city', function(err, locationData) {
+    Locations.find({}, 'country city', function(err, locationData) {
         if (err) {
             res.send(err);
         }
@@ -26,13 +29,14 @@ app.get('/api/locdata', (req, res) => {
     });
 });
 
-app.get('/api/obsdata', (req, res) => {
-    models.find(function(err, observationData) {
+app.post('/api/obsdata', (req, res, next) => {
+    var entry = new Observations(req.body);
+    entry.save(function(err, post) {
         if (err) {
-            res.send(err);
+            return next(err)
         }
-        res.json(observationData);
-    });
+        res.status(201).json(entry)
+    })
 });
 
 module.exports = app;

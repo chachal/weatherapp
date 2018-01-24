@@ -13,11 +13,14 @@ const locSchema = new Schema({
 }, { collection: 'locations' });
 
 const obsSchema = new Schema({
-  location: String,
+  city: String,
+  country: String,
   temperature: Number,
   created: Date
 }, { collection: 'observations' });
 
 // models
-module.exports = mongoose.model('LocationModel', locSchema);
-module.exports = mongoose.model('EntryModel', locSchema);
+var LocationModel = mongoose.model('LocationModel', locSchema);
+var ObservationModel = mongoose.model('ObservationModel', obsSchema);
+
+module.exports = { 'LocationModel': LocationModel, 'ObservationModel': ObservationModel }
