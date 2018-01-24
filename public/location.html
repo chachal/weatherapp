@@ -9,6 +9,7 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.20.1/math.min.js"></script>
      <script src="index.js"></script>
      <script src="location.js"></script>
    </head>
@@ -16,12 +17,10 @@
      <div ng-controller="CurrentTemp">
        <h1> {{ currentCity }}, {{ currentCountry }} </h1>
        <h2> current temp </h2>
-     </div>
-     <div ng-controller="LocationExtremes">
        <table>
          <thead>
            <th> coldest </th>
-           <th> hottest </th>
+           <th> {{ dataaaa[0] }} </th>
          </thead>
        </table>
      </div>

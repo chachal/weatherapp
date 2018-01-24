@@ -29,11 +29,20 @@ app.get('/api/locdata', (req, res) => {
     });
 });
 
-app.post('/api/obsdata', (req, res, next) => {
+app.get('/api/obsdata', (req, res) => {
+    Observations.find(req.query, 'temperature', function(err, observationData) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(observationData);
+    });
+});
+
+app.post('/api/obsdata', (req, res) => {
     var entry = new Observations(req.body);
     entry.save(function(err, post) {
         if (err) {
-            return next(err)
+            res.send(err);
         }
         res.status(201).json(entry)
     })

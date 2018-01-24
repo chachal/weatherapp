@@ -6,29 +6,26 @@ locationMod.config(['$locationProvider', function locationConfig($locationProvid
   $locationProvider.html5Mode(true);
 }]);
 
-// retrieves the current location from the url -----------------------------------
-locationMod.factory('GetLocation', function($location) {
+// retrieves the current location from the url and location data from database -----------------------------------
+locationMod.factory('GetLocationData', function($location, $http) {
     var currentLocation = {
-    'city': $location.search().city,
-    'country': $location.search().country
+        'city': $location.search().city,
+        'country': $location.search().country
     }
+    $http.get('/api/obsdata', { params: currentLocation })
+   .then(function(res, err) {
+        var locationData = res.data
+        currentLocation["locationData"] = locationData;
+    });
     return currentLocation;
 });
 
-// placeholder -----------------------------------
-locationMod.controller('ctrl2', function($scope, $http) {
-   $http.get('/api/locationdata')
-   .then(function(res, err) {
-        $scope.locs = res.data
-    });
-});
-
-locationMod.controller('CurrentTemp', function($scope, GetLocation) {
-    $scope.currentCity = GetLocation.city;
-    $scope.currentCountry = GetLocation.country;
-});
-
-locationMod.controller('LocationExtremes', function($scope) {
+// shows current location and current, minimum and maximum temperatures in location -----------------------------------
+locationMod.controller('CurrentTemp', function($scope, GetLocationData) {
+    console.log(GetLocationData.locationData);
+    $scope.currentCity = GetLocationData.city;
+    $scope.currentCountry = GetLocationData.country;
+    $scope.dataaaa = GetLocationData.locationData;
 });
 
 // add a temperature observation to the current location -----------------------------------
@@ -47,7 +44,7 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
 });
 
 // sets initial temperature in add dialog to zero, and submits the observation -----------------------------------
-locationMod.controller('SubmitTemp', function($scope, $http, GetLocation) {
+locationMod.controller('SubmitTemp', function($scope, $http, GetLocationData) {
     $scope.observation = {
         temperature: 0
     };
