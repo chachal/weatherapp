@@ -17,15 +17,15 @@
            <h2>Add a temperature observation</h2>
              <md-content>
                <form ng-submit="$event.preventDefault()">
-                 <div ng-controller="TempInit">
+                 <div ng-controller="SubmitTemp">
                      <md-input-container>
                        <input type="number" placeholder="Temperature (°C)" name="temperature" ng-model="observation.temperature"/>
                      </md-input-container>
+                     <md-dialog-actions>
+                       <md-button type="button" ng-click="cancel()">CANCEL</md-button>
+                       <md-button ng-click="submitObservation() && finish($event)">ADD</md-button>
+                     </md-dialog-actions>
                  </div>
-                   <md-dialog-actions>
-                     <md-button type="button" ng-click="cancel()">CANCEL</md-button>
-                     <md-button ng-click="finish($event)">ADD</md-button>
-                   </md-dialog-actions>
                </form>
              </md-content>
          </div>

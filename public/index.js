@@ -45,12 +45,12 @@ index.controller('SubmitTemp', function($scope, $http) {
     $scope.observation = {
         temperature: 0
     };
-    var currentTime = new Date;
-    $scope.submitObservation = function(selectedLocation, selectedTemperature) {
+    $scope.submitObservation = function(selectedLocation) {
+        var currentTime = new Date;
         var entryData = {
             'city': selectedLocation.city,
             'country': selectedLocation.country,
-            'temperature': selectedTemperature,
+            'temperature': $scope.observation.temperature,
             'created': currentTime
         }
         $http.post('/api/obsdata', entryData)

@@ -13,10 +13,8 @@
      <script src="location.js"></script>
    </head>
    <body>
-     <div ng-controller="ShowLocation">
-       <h1> {{ currentCity }}, {{ currentCountry }} </h1>
-     </div>
      <div ng-controller="CurrentTemp">
+       <h1> {{ currentCity }}, {{ currentCountry }} </h1>
        <h2> current temp </h2>
      </div>
      <div ng-controller="LocationExtremes">
@@ -27,7 +25,7 @@
          </thead>
        </table>
      </div>
-     <div ng-controller="AddTemp">
+     <div ng-controller="AddTempDialog">
        <md-content>
          <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
        </md-content>
