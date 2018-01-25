@@ -30,7 +30,7 @@ app.get('/api/locdata', (req, res) => {
 });
 
 app.get('/api/obsdata', (req, res) => {
-    Observations.find(req.query, 'temperature', function(err, observationData) {
+    Observations.find(req.query, 'temperature created', function(err, observationData) {
         if (err) {
             res.send(err);
         }

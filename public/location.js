@@ -22,11 +22,22 @@ locationMod.factory('GetLocationData', function($location, $http) {
 });
 
 // shows current location and current, minimum and maximum temperatures in location -----------------------------------
-locationMod.controller('CurrentTemp', function($scope, GetLocationData) {
+locationMod.controller('LocationAndTempData', function($scope, GetLocationData) {
     var currentLocation = GetLocationData.getData();
-    currentLocation.then(function(locData) {
-        $scope.currentCity = locData.city;
-        $scope.currentCountry = locData.country;
+    currentLocation.then(function(currentData) {
+        $scope.currentCity = currentData.city;
+        $scope.currentCountry = currentData.country;
+        var latestEntry = currentData.locationData[0];
+        for (i=0; i < currentData.locationData.length; i++) {
+            var tmp = currentData.locationData[i];
+            if (tmp.created > latestEntry.created) {
+                latestEntry = tmp;
+            }
+        }
+        $scope.latestTemp = latestEntry.temperature;
+        $scope.minTemp = Math.min.apply(Math, currentData.locationData.map(function(entry) { return entry.temperature; }));
+        $scope.maxTemp = Math.max.apply(Math, currentData.locationData.map(function(entry) { return entry.temperature; }));
+
     })
 });
 

@@ -14,16 +14,17 @@
      <script src="location.js"></script>
    </head>
    <body>
-     <div ng-controller="CurrentTemp">
+     <div ng-controller="LocationAndTempData">
        <h1> {{ currentCity }}, {{ currentCountry }} </h1>
-       <h2> current temp </h2>
+       <h2> {{ latestTemp }} </h2>
        <table>
          <thead>
-           <th> coldest </th>
-           <th> {{ dataaaa[0] }} </th>
+           <th> {{ minTemp }} </th>
+           <th> {{ maxTemp }} </th>
          </thead>
        </table>
      </div>
+     <br/>
      <div ng-controller="AddTempDialog">
        <md-content>
          <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
