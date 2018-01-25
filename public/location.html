@@ -16,9 +16,9 @@
    <body>
      <div ng-controller="LocationAndTempData">
        <h1>{{ currentCity }}, {{ currentCountry }}</h1>
-       <h2>Current temperature: {{ latestTemp }} °C</h2>
-           <p>Lowest in 24 hours: {{ minTempInDay.temperature }} °C / Lowest ever: {{ minTempEver.temperature }} °C</p>
-           <p>Highest in 24 hours: {{ maxTempInDay.temperature }} °C / Highest ever: {{ maxTempEver.temperature }} °C</p>
+       <h2>Current temperature: {{ latestTemp }}</h2>
+           <p>Lowest in 24 hours: {{ minTempInDay }} / Lowest ever: {{ minTempEver }} </p>
+           <p>Highest in 24 hours: {{ maxTempInDay }} / Highest ever: {{ maxTempEver }} </p>
      </div>
      <br/>
      <div ng-controller="AddTempDialog">

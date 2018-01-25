@@ -27,29 +27,39 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
     currentLocation.then(function(currentData) {
         $scope.currentCity = currentData.city;
         $scope.currentCountry = currentData.country;
-        var latestEntry = currentData.locationData[0];
-        for (i=0; i < currentData.locationData.length; i++) {
-            var tmp = currentData.locationData[i];
-            if (tmp.created > latestEntry.created) {
-                latestEntry = tmp;
+        if (!currentData.locationData) {
+            var latestEntry = currentData.locationData[0];
+            for (i=0; i < currentData.locationData.length; i++) {
+                var tmp = currentData.locationData[i];
+                if (tmp.created > latestEntry.created) {
+                    latestEntry = tmp;
+                }
             }
-        }
-        $scope.latestTemp = latestEntry.temperature;
-        var dayInMilliseconds = 60*60*24*1000;
-        var last24Hours = [];
-        for (i=0; i < currentData.locationData.length; i++) {
-            var currentTime = new Date;
-            var entryTime = new Date(currentData.locationData[i].created);
-            if (Math.abs(currentTime - entryTime) <= dayInMilliseconds) {
-                last24Hours.push(currentData.locationData[i])
+            $scope.latestTemp = latestEntry.temperature + " °C";
+            var dayInMilliseconds = 60*60*24*1000;
+            var last24Hours = [];
+            for (i=0; i < currentData.locationData.length; i++) {
+                var currentTime = new Date;
+                var entryTime = new Date(currentData.locationData[i].created);
+                if (Math.abs(currentTime - entryTime) <= dayInMilliseconds) {
+                    last24Hours.push(currentData.locationData[i])
+                }
             }
+            $scope.minTempInDay = minimumTemperature(last24Hours);
+            $scope.maxTempInDay = maximumTemperature(last24Hours);
+            $scope.minTempEver = minimumTemperature(currentData.locationData);
+            $scope.maxTempEver = maximumTemperature(currentData.locationData);
         }
-        $scope.minTempInDay = minimumTemperature(last24Hours);
-        $scope.maxTempInDay = maximumTemperature(last24Hours);
-        $scope.minTempEver = minimumTemperature(currentData.locationData);
-        $scope.maxTempEver = maximumTemperature(currentData.locationData);
+        else {
+            $scope.latestTemp = "No data yet";
+            $scope.minTempInDay = "No data yet";
+            $scope.maxTempInDay = "No data yet";
+            $scope.minTempEver = "No data yet";
+            $scope.maxTempEver ="No data yet";
+        }
 
     });
+
     function minimumTemperature(allData) {
         var minTemp = allData[0];
         for (i=0; i < allData.length; i++) {
@@ -58,7 +68,7 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
                 minTemp = tmp;
             }
         }
-        return minTemp;
+        return minTemp.temperature;
     };
 
     function maximumTemperature(allData) {
@@ -69,7 +79,7 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
                 maxTemp = tmp;
             }
         }
-        return maxTemp;
+        return maxTemp.temperature;
     };
 });
 
