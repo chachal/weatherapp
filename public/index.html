@@ -51,9 +51,9 @@
 
       </div>
       <br/>
-      <div ng-controller="ExtremesNow" layout="row">
-            <p>coldest now</p>
-            <p>hottest now</p>
+      <div ng-controller="Extremes" layout="row">
+            <p>COLDEST EVER: {{ minTemp.city }}, {{ minTemp.country }}: {{ minTemp.temperature }} °C</p>
+            <p>HOTTEST EVER: {{ maxTemp.city }}, {{ maxTemp.country }}: {{ maxTemp.temperature }} °C</p>
       </div>
    </body>
 </html>

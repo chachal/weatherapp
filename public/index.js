@@ -5,6 +5,17 @@ index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
+// retrieves temperature data from database
+index.factory('GetLocationData', function($location, $http) {
+    function getData() {
+        return $http.get('/api/obsdata')
+       .then(function(res, err) {
+            var allLocations = res.data;
+            return allLocations;
+        })};
+    return {getData: getData};
+});
+
 // autocomplete search & redirect to selected location page -----------------------------------
 index.controller('LocationSearch', function($scope, $http, $window) {
   $http.get('/api/locdata')
@@ -60,6 +71,24 @@ index.controller('SubmitTemp', function($scope, $http) {
     }
 });
 
-index.controller('ExtremesNow', function($scope) {
-    $scope.name1 = '';
+// shows recorded min and max temperatures and their location
+index.controller('Extremes', function($scope, GetLocationData) {
+  var allLocations = GetLocationData.getData();
+  allLocations.then(function(allData) {
+      $scope.maxTemp = allData[0];
+      for (i=0; i < allData.length; i++) {
+          var tmp = allData[i];
+          if (tmp.temperature > $scope.maxTemp.temperature) {
+              console.log("tmp: " + tmp.temperature + " maxTemp: " + $scope.maxTemp.temperature)
+              $scope.maxTemp = tmp;
+          }
+      }
+      $scope.minTemp = allData[0];
+      for (i=0; i > allData.length; i++) {
+          var tmp = allData[i];
+          if (tmp.temperature > $scope.minTemp.temperature) {
+              $scope.minTemp = tmp;
+          }
+      }
+  })
 });
