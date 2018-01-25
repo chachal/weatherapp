@@ -27,7 +27,6 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
     currentLocation.then(function(currentData) {
         $scope.currentCity = currentData.city;
         $scope.currentCountry = currentData.country;
-        if (!currentData.locationData) {
             var latestEntry = currentData.locationData[0];
             for (i=0; i < currentData.locationData.length; i++) {
                 var tmp = currentData.locationData[i];
@@ -45,19 +44,23 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
                     last24Hours.push(currentData.locationData[i])
                 }
             }
-            $scope.minTempInDay = minimumTemperature(last24Hours);
-            $scope.maxTempInDay = maximumTemperature(last24Hours);
-            $scope.minTempEver = minimumTemperature(currentData.locationData);
-            $scope.maxTempEver = maximumTemperature(currentData.locationData);
-        }
-        else {
-            $scope.latestTemp = "No data yet";
-            $scope.minTempInDay = "No data yet";
-            $scope.maxTempInDay = "No data yet";
-            $scope.minTempEver = "No data yet";
-            $scope.maxTempEver ="No data yet";
-        }
-
+            if (last24Hours.length > 0) {
+                $scope.minTempInDay = minimumTemperature(last24Hours) + " °C";
+                $scope.maxTempInDay = maximumTemperature(last24Hours) + " °C";
+            }
+            else {
+                $scope.minTempInDay = "No data yet";
+                $scope.maxTempInDay = "No data yet";
+            };
+            if (currentData.locationData.length > 0) {
+                $scope.minTempEver = minimumTemperature(currentData.locationData) + " °C";
+                $scope.maxTempEver = maximumTemperature(currentData.locationData) + " °C";
+            }
+            else {
+                console.log(currentData.locationData)
+                $scope.minTempEver = "No data yet";
+                $scope.maxTempEver = "No data yet";
+            };
     });
 
     function minimumTemperature(allData) {
