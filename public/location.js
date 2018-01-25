@@ -8,24 +8,26 @@ locationMod.config(['$locationProvider', function locationConfig($locationProvid
 
 // retrieves the current location from the url and location data from database -----------------------------------
 locationMod.factory('GetLocationData', function($location, $http) {
-    var currentLocation = {
-        'city': $location.search().city,
-        'country': $location.search().country
-    }
-    $http.get('/api/obsdata', { params: currentLocation })
-   .then(function(res, err) {
-        var locationData = res.data
-        currentLocation["locationData"] = locationData;
-    });
-    return currentLocation;
+    function getData() {
+        var currentLocation = {
+            'city': $location.search().city,
+            'country': $location.search().country
+        }
+        return $http.get('/api/obsdata', { params: currentLocation })
+       .then(function(res, err) {
+            currentLocation["locationData"] = res.data;
+            return currentLocation;
+        })};
+    return {getData: getData};
 });
 
 // shows current location and current, minimum and maximum temperatures in location -----------------------------------
 locationMod.controller('CurrentTemp', function($scope, GetLocationData) {
-    console.log(GetLocationData.locationData);
-    $scope.currentCity = GetLocationData.city;
-    $scope.currentCountry = GetLocationData.country;
-    $scope.dataaaa = GetLocationData.locationData;
+    var currentLocation = GetLocationData.getData();
+    currentLocation.then(function(locData) {
+        $scope.currentCity = locData.city;
+        $scope.currentCountry = locData.country;
+    })
 });
 
 // add a temperature observation to the current location -----------------------------------
