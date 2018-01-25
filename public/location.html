@@ -15,14 +15,10 @@
    </head>
    <body>
      <div ng-controller="LocationAndTempData">
-       <h1> {{ currentCity }}, {{ currentCountry }} </h1>
-       <h2> {{ latestTemp }} </h2>
-       <table>
-         <thead>
-           <th> {{ minTemp }} </th>
-           <th> {{ maxTemp }} </th>
-         </thead>
-       </table>
+       <h1>{{ currentCity }}, {{ currentCountry }}</h1>
+       <h2>Current temperature: {{ latestTemp }} °C</h2>
+           <p>Lowest in 24 hours: {{ minTempInDay.temperature }} °C / Lowest ever: {{ minTempEver.temperature }} °C</p>
+           <p>Highest in 24 hours: {{ maxTempInDay.temperature }} °C / Highest ever: {{ maxTempEver.temperature }} °C</p>
      </div>
      <br/>
      <div ng-controller="AddTempDialog">

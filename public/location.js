@@ -21,7 +21,7 @@ locationMod.factory('GetLocationData', function($location, $http) {
     return {getData: getData};
 });
 
-// shows current location and current, minimum and maximum temperatures in location -----------------------------------
+// shows current location and current, minimum and maximum temperatures (last 24 hours)  in location -----------------------------------
 locationMod.controller('LocationAndTempData', function($scope, GetLocationData) {
     var currentLocation = GetLocationData.getData();
     currentLocation.then(function(currentData) {
@@ -35,10 +35,42 @@ locationMod.controller('LocationAndTempData', function($scope, GetLocationData) 
             }
         }
         $scope.latestTemp = latestEntry.temperature;
-        $scope.minTemp = Math.min.apply(Math, currentData.locationData.map(function(entry) { return entry.temperature; }));
-        $scope.maxTemp = Math.max.apply(Math, currentData.locationData.map(function(entry) { return entry.temperature; }));
+        var dayInMilliseconds = 60*60*24*1000;
+        var last24Hours = [];
+        for (i=0; i < currentData.locationData.length; i++) {
+            var currentTime = new Date;
+            var entryTime = new Date(currentData.locationData[i].created);
+            if (Math.abs(currentTime - entryTime) <= dayInMilliseconds) {
+                last24Hours.push(currentData.locationData[i])
+            }
+        }
+        $scope.minTempInDay = minimumTemperature(last24Hours);
+        $scope.maxTempInDay = maximumTemperature(last24Hours);
+        $scope.minTempEver = minimumTemperature(currentData.locationData);
+        $scope.maxTempEver = maximumTemperature(currentData.locationData);
 
-    })
+    });
+    function minimumTemperature(allData) {
+        var minTemp = allData[0];
+        for (i=0; i < allData.length; i++) {
+            var tmp = allData[i];
+            if (tmp.temperature < minTemp.temperature) {
+                minTemp = tmp;
+            }
+        }
+        return minTemp;
+    };
+
+    function maximumTemperature(allData) {
+        var maxTemp = allData[0];
+        for (i=0; i < allData.length; i++) {
+            var tmp = allData[i];
+            if (tmp.temperature > maxTemp.temperature) {
+                maxTemp = tmp;
+            }
+        }
+        return maxTemp;
+    };
 });
 
 // add a temperature observation to the current location -----------------------------------
@@ -57,21 +89,24 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
 });
 
 // sets initial temperature in add dialog to zero, and submits the observation -----------------------------------
-locationMod.controller('SubmitTemp', function($scope, $http, GetLocationData) {
+locationMod.controller('SubmitTemp', function($scope, $http, $location) {
     $scope.observation = {
         temperature: 0
     };
     $scope.submitObservation = function() {
+        var currentLocation = {
+          'city': $location.search().city,
+          'country': $location.search().country
+        }
         var currentTime = new Date;
         var entryData = {
-            'city': GetLocation.city,
-            'country': GetLocation.country,
+            'city': currentLocation.city,
+            'country': currentLocation.country,
             'temperature': $scope.observation.temperature,
             'created': currentTime
         }
         $http.post('/api/obsdata', entryData)
         .then(function(res, err) {
-            console.log(entryData)
             // flash text or something
         })
     }

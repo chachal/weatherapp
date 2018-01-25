@@ -5,7 +5,7 @@ index.controller('IndexMap', function($scope) {
     $scope.name1 = '';
 });
 
-// retrieves temperature data from database
+// retrieves temperature data from database -----------------------------------
 index.factory('GetLocationData', function($location, $http) {
     function getData() {
         return $http.get('/api/obsdata')
@@ -71,24 +71,43 @@ index.controller('SubmitTemp', function($scope, $http) {
     }
 });
 
-// shows recorded min and max temperatures and their location
-index.controller('Extremes', function($scope, GetLocationData) {
+// shows min and max temperatures from the last 24 hours, and current temperature for all observation points ) -----------------------------------
+index.controller('Extremes', function($scope, $http, GetLocationData) {
   var allLocations = GetLocationData.getData();
   allLocations.then(function(allData) {
-      $scope.maxTemp = allData[0];
-      for (i=0; i < allData.length; i++) {
-          var tmp = allData[i];
-          if (tmp.temperature > $scope.maxTemp.temperature) {
-              console.log("tmp: " + tmp.temperature + " maxTemp: " + $scope.maxTemp.temperature)
-              $scope.maxTemp = tmp;
-          }
-      }
-      $scope.minTemp = allData[0];
-      for (i=0; i > allData.length; i++) {
-          var tmp = allData[i];
-          if (tmp.temperature > $scope.minTemp.temperature) {
-              $scope.minTemp = tmp;
-          }
+      var locationList = getLocationList();
+      for (entry in locationList) {
+
       }
   })
+
+  function getLocationList() {
+      $http.get('/api/locdata')
+      .then(function(res, err) {
+          return res.data;
+      });
+  };
+
+  function minimumTemperature(allData) {
+      var minTemp = allData[0];
+      for (i=0; i < allData.length; i++) {
+          var tmp = allData[i];
+          if (tmp.temperature < minTemp.temperature) {
+              minTemp = tmp;
+          }
+      }
+      return minTemp;
+  };
+
+  function maximumTemperature(allData) {
+      var maxTemp = allData[0];
+      for (i=0; i < allData.length; i++) {
+          var tmp = allData[i];
+          if (tmp.temperature > maxTemp.temperature) {
+              maxTemp = tmp;
+          }
+      }
+      return maxTemp;
+  };
+
 });
