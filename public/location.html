@@ -14,6 +14,9 @@
    </head>
    <body>
      <div ng-controller="LocationAndTempData">
+       <md-content>
+         <md-button ng-click="goToIndex()">BACK TO INDEX</md-button>
+       </md-content>
            <h1>{{ currentCity }}, {{ currentCountry }}</h1>
            <h2>Current temperature: {{ latestTemp }}</h2>
                <p>Lowest in 24 hours: {{ minTempInDay }} / Lowest ever: {{ minTempEver }} </p>

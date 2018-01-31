@@ -22,7 +22,11 @@ locationMod.factory('GetLocationData', function($location, $http) {
 });
 
 // shows current location and current, minimum and maximum temperatures (last 24 hours)  in location -----------------------------------
-locationMod.controller('LocationAndTempData', function($scope, GetLocationData) {
+locationMod.controller('LocationAndTempData', function($scope, $window, GetLocationData) {
+
+  $scope.goToIndex = function() {
+      $window.location.href = '/';
+  }
 
   $scope.updatePageData = function() {
       var currentLocation = GetLocationData.getData();
