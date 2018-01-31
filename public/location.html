@@ -10,7 +10,6 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.20.1/math.min.js"></script>
-     <script src="index.js"></script>
      <script src="location.js"></script>
    </head>
    <body>
@@ -25,11 +24,27 @@
              <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
            </md-content>
          </div>
-         <div ng-controller="TempHistoryGraph">
+         <div>
            <h2> temphistory graph </h2>
          </div>
          <div ng-controller="TempHistoryList">
-           <h2> temphistory list, open popup </h2>
+           <table>
+             <tr>
+               <md-content>
+                 <th>
+                   <md-button ng-click="sortBy('created')">Date</md-button>
+                   <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>
+                 </th>
+                 <th>
+                   <md-button ng-click="sortBy('temperature')">Temperature</md-button>
+                   <span ng-show="property === 'temperature'" ng-class="{reverse: reverse}"></span>
+                 </th>
+               </md-content>
+             </tr>
+           <tr ng-repeat="entry in entries | orderBy:property:reverse">
+               <td>{{ entry.created | date:'medium'}}</td>
+               <td>{{ entry.temperature }}</td>
+           </tr>
          </div>
       </div>
    </body>

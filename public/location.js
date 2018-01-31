@@ -133,6 +133,15 @@ locationMod.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
 });
 
-locationMod.controller('TempHistoryList', function($scope) {
-    $scope.name1 = '';
+locationMod.controller('TempHistoryList', function($scope, GetLocationData) {
+    var listData = GetLocationData.getData();
+    listData.then(function(entryList) {
+        $scope.property = 'created';
+        $scope.reverse = true;
+        $scope.entries = entryList.locationData;
+        $scope.sortBy = function(property) {
+            $scope.reverse = ($scope.property === property) ? !$scope.reverse : false;
+            $scope.property = property;
+        }
+    })
 });
