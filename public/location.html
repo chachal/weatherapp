@@ -15,22 +15,22 @@
    </head>
    <body>
      <div ng-controller="LocationAndTempData">
-       <h1>{{ currentCity }}, {{ currentCountry }}</h1>
-       <h2>Current temperature: {{ latestTemp }}</h2>
-           <p>Lowest in 24 hours: {{ minTempInDay }} / Lowest ever: {{ minTempEver }} </p>
-           <p>Highest in 24 hours: {{ maxTempInDay }} / Highest ever: {{ maxTempEver }} </p>
-     </div>
-     <br/>
-     <div ng-controller="AddTempDialog">
-       <md-content>
-         <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
-       </md-content>
-     </div>
-     <div ng-controller="TempHistoryGraph">
-       <h2> temphistory graph </h2>
-     </div>
-     <div ng-controller="TempHistoryList">
-       <h2> temphistory list, open popup </h2>
-     </div>
+           <h1>{{ currentCity }}, {{ currentCountry }}</h1>
+           <h2>Current temperature: {{ latestTemp }}</h2>
+               <p>Lowest in 24 hours: {{ minTempInDay }} / Lowest ever: {{ minTempEver }} </p>
+               <p>Highest in 24 hours: {{ maxTempInDay }} / Highest ever: {{ maxTempEver }} </p>
+         <br/>
+         <div ng-controller="AddTempDialog">
+           <md-content>
+             <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
+           </md-content>
+         </div>
+         <div ng-controller="TempHistoryGraph">
+           <h2> temphistory graph </h2>
+         </div>
+         <div ng-controller="TempHistoryList">
+           <h2> temphistory list, open popup </h2>
+         </div>
+      </div>
    </body>
 </html>
