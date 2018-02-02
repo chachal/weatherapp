@@ -28,6 +28,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
       $window.location.href = '/';
   }
 
+  // updates temperature data on the location page
   $scope.updatePageData = function() {
       var currentLocation = GetLocationData.getData();
       currentLocation.then(function(currentData) {
@@ -72,6 +73,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
   }
   $scope.updatePageData();
 
+  // returns the minimum temperature
   function minimumTemperature(allData) {
       var minTemp = allData[0];
       for (i=0; i < allData.length; i++) {
@@ -83,6 +85,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
       return minTemp.temperature;
   };
 
+  // returns the maximum temperature
   function maximumTemperature(allData) {
       var maxTemp = allData[0];
       for (i=0; i < allData.length; i++) {
@@ -138,6 +141,7 @@ locationMod.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
 });
 
+// opens dialog for list of temperature history for the current location -----------------------------------
 locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
   $scope.openDialog = function($event) {
       $mdDialog.show( {
@@ -154,6 +158,7 @@ locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
   }
 });
 
+// shows orderable list of temperature history for the current location -----------------------------------
 locationMod.controller('TempHistoryList', function($scope, GetLocationData) {
     var listData = GetLocationData.getData();
     listData.then(function(entryList) {

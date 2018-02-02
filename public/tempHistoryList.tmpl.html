@@ -21,6 +21,9 @@
                    <table>
                      <tr>
                        <md-content>
+                         <md-dialog-actions>
+                           <md-button ng-click="close()">CLOSE</md-button>
+                         </md-dialog-actions>
                          <th>
                            <md-button ng-click="sortBy('created')">Date</md-button>
                            <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>

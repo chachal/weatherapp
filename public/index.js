@@ -10,10 +10,19 @@ index.factory('GetLocationData', function($location, $http) {
     function getData() {
         return $http.get('/api/obsdata')
        .then(function(res, err) {
+            var allData = res.data;
+            return allData;
+        })};
+    function getLocations() {
+        return $http.get('/api/locdata')
+       .then(function(res, err) {
             var allLocations = res.data;
             return allLocations;
         })};
-    return {getData: getData};
+    return {
+            getData: getData,
+            getLocations: getLocations
+            };
 });
 
 // autocomplete search & redirect to selected location page -----------------------------------
@@ -72,22 +81,56 @@ index.controller('SubmitTemp', function($scope, $http) {
 });
 
 // shows min and max temperatures from the last 24 hours, and current temperature for all observation points ) -----------------------------------
-index.controller('Extremes', function($scope, $http, GetLocationData) {
-  var allLocations = GetLocationData.getData();
-  allLocations.then(function(allData) {
-      var locationList = getLocationList();
-      for (entry in locationList) {
+index.controller('TempHistory', function($scope, $http, GetLocationData) {
+    var allLocations = GetLocationData.getLocations();
+    allLocations.then(function(locationList) {
+        var allLocsData = GetLocationData.getData();
+        allLocsData.then(function(allData) {
+            locationList = sortToLocation(locationList, allData);
+            locationList = findLatest(locationList);
+            $scope.currentMin = locationList[0].latest;
+            $scope.currentMax = locationList[0].latest;
+            for (i=0; i < locationList.length; i++) {
+                if (locationList[i].latest && locationList[i].latest.temperature < $scope.currentMin.temperature) {
+                    $scope.currentMin = locationList[i].latest;
+                }
+                if (locationList[i].latest && locationList[i].latest.temperature > $scope.currentMax.temperature) {
+                    $scope.currentMax = locationList[i].latest;
+                }
+            }
+        });
+    });
 
+  // sort entries to locationList by location
+  function sortToLocation(locationList, allData) {
+      for (i=0; i < locationList.length; i++) {
+          var tmp = [];
+          for (j=0; j < allData.length; j++) {
+              if (locationList[i].city == allData[j].city && locationList[i].country == allData[j].country) {
+                  tmp.push(allData[j]);
+              }
+          }
+          locationList[i].entries = tmp;
       }
-  })
+      return locationList;
+  }
 
-  function getLocationList() {
-      $http.get('/api/locdata')
-      .then(function(res, err) {
-          return res.data;
-      });
-  };
+  // find latest entries for each location
+  function findLatest(locationList) {
+      for (i=0; i < locationList.length; i++) {
+          var latest = locationList[i].entries[0];
+          for (j=0; j < locationList[i].entries.length; j++) {
+                var tmp = locationList[i].entries[j];
+                if (tmp.created > latest.created) {
+                    latest = tmp;
+                }
+          }
+          locationList[i].latest = latest;
+      }
+      return locationList;
+  }
 
+  // returns the minimum temperature
   function minimumTemperature(allData) {
       var minTemp = allData[0];
       for (i=0; i < allData.length; i++) {
@@ -99,6 +142,7 @@ index.controller('Extremes', function($scope, $http, GetLocationData) {
       return minTemp;
   };
 
+  // returns the maximum temperature
   function maximumTemperature(allData) {
       var maxTemp = allData[0];
       for (i=0; i < allData.length; i++) {
