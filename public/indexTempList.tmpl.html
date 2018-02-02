@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="index">
+   <head>
+     <title>WeatherApp</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+     <script src="index.js"></script>
+   </head>
+   <body>
+     <md-dialog>
+       <md-dialog-content ng-cloak>
+         <div layout="row">
+           <h2>Current Temperatures</h2>
+             <md-content>
+               <form ng-submit="$event.preventDefault()">
+                 <div ng-controller="IndexTempList">
+                   <table>
+                     <tr>
+                       <md-content>
+                         <md-dialog-actions>
+                           <md-button ng-click="close()">CLOSE</md-button>
+                         </md-dialog-actions>
+                         <th>
+                           <md-button ng-click="sortBy('city')">City</md-button>
+                           <span ng-show="property === 'city'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                         <th>
+                           <md-button ng-click="sortBy('country')">Country</md-button>
+                           <span ng-show="property === 'country'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                         <th>
+                           <md-button ng-click="sortBy('created')">Date</md-button>
+                           <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                         <th>
+                           <md-button ng-click="sortBy('temperature')">Temperature</md-button>
+                           <span ng-show="property === 'temperature'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                       </md-content>
+                     </tr>
+                     <tr ng-repeat="entry in currentData | orderBy:property:reverse">
+                         <td>{{ entry.city }}</td>
+                         <td>{{ entry.country }}</td>
+                         <td>{{ entry.created | date:'MMM d, y h:mm a' }}</td>
+                         <td>{{ entry.temperature }}</td>
+                     </tr>
+                   </table>
+                   <md-dialog-actions>
+                     <md-button ng-click="close()">CLOSE</md-button>
+                   </md-dialog-actions>
+                 </div>
+               </form>
+             </md-content>
+         </div>
+       </md-dialog-content>
+     </md-dialog>
+   </body>
+</html>

@@ -47,7 +47,7 @@ index.controller('LocationSearch', function($scope, $http, $window) {
 
 // dialog for quicly adding observations to a selected location -----------------------------------
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
-    $scope.openDialog = function($event) {
+    $scope.openAddDialog = function($event) {
         $mdDialog.show( {
             templateUrl: 'quickadd.tmpl.html',
             parent: angular.element(document.body),
@@ -80,7 +80,24 @@ index.controller('SubmitTemp', function($scope, $http) {
     }
 });
 
-// shows min and max temperatures from the last 24 hours, and current temperature for all observation points ) -----------------------------------
+// opens dialog for list of temperature history for all locations -----------------------------------
+index.controller('IndexTempDialog', function($scope, $mdDialog) {
+  $scope.openTempDialog = function($event) {
+      $mdDialog.show( {
+          templateUrl: 'indexTempList.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: $event,
+          clickOutsideToClose: true,
+          scope: $scope,
+          preserveScope: true
+      })
+  }
+  $scope.close = function() {
+      $mdDialog.cancel();
+  }
+});
+
+// shows min and max temperatures from the last 24 hours and from all entries, and current temperature for all observation points ) -----------------------------------
 index.controller('TempHistory', function($scope, $http, GetLocationData) {
     var allLocations = GetLocationData.getLocations();
     allLocations.then(function(locationList) {
@@ -100,7 +117,11 @@ index.controller('TempHistory', function($scope, $http, GetLocationData) {
             }
             $scope.lowestEver = minimumTemperature(allData);
             $scope.highestEver = maximumTemperature(allData);
+            var last24Hours = getLast24Hours(allData);
+            $scope.lowest24Hours = minimumTemperature(last24Hours);
+            $scope.highest24Hours = maximumTemperature(last24Hours);
         });
+        $scope.currentList = locationList;
     });
 
   // sort entries to locationList by location
@@ -132,6 +153,19 @@ index.controller('TempHistory', function($scope, $http, GetLocationData) {
       return locationList;
   }
 
+  function getLast24Hours(allData) {
+      var dayInMilliseconds = 60*60*24*1000;
+      var last24Hours = [];
+      for (i=0; i < allData.length; i++) {
+          var currentTime = new Date;
+          var entryTime = new Date(allData[i].created);
+          if (Math.abs(currentTime - entryTime) <= dayInMilliseconds) {
+              last24Hours.push(allData[i])
+          }
+      }
+      return last24Hours;
+  }
+
   // returns the minimum temperature
   function minimumTemperature(allData) {
       var minTemp = allData[0];
@@ -156,4 +190,18 @@ index.controller('TempHistory', function($scope, $http, GetLocationData) {
       return maxTemp;
   };
 
+});
+
+index.controller('IndexTempList', function($scope) {
+    $scope.currentData = [];
+    for (i=0; i < $scope.currentList.length; i++) {
+        $scope.currentData.push($scope.currentList[i].latest);
+    }
+    $scope.property = 'city';
+    $scope.reverse = true;
+    $scope.entries = $scope.currentData;
+    $scope.sortBy = function(property) {
+        $scope.reverse = ($scope.property === property) ? !$scope.reverse : false;
+        $scope.property = property;
+    }
 });

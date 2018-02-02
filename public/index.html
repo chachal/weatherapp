@@ -44,19 +44,21 @@
       </div>
       <br/>
       <div ng-controller="QuickAddTempDialog">
-
           <md-content>
-              <md-button ng-click="openDialog($event)">ADD OBSERVATION</md-button>
+              <md-button ng-click="openAddDialog($event)">ADD OBSERVATION</md-button>
           </md-content>
-
       </div>
       <br/>
       <div ng-controller="TempHistory" layout="row">
             <p>Lowest now: {{ currentMin.city }}, {{ currentMin.country }}: {{ currentMin.temperature }} °C / Highest now: {{ currentMax.city }}, {{ currentMax.country }}: {{ currentMax.temperature }} °C</p>
-            <p>Lowest in 24 hours: location/temp/date, Lowest ever: {{ lowestEver.created | date:'medium' }} {{ lowestEver.city }}, {{ lowestEver.country }}: {{ lowestEver.temperature }} °C</p>
-            <p>Highest in 24 hours: location/temp/date, Highest ever: {{ highestEver.created | date:'medium' }} {{ highestEver.city }}, {{ highestEver.country }}: {{ highestEver.temperature }} °C</p>
+            <p>Lowest in 24 hours: {{ lowest24Hours.created | date:'h:mm a' }} {{ lowest24Hours.city }}, {{ lowest24Hours.country }}: {{ lowest24Hours.temperature }} °C / Highest in 24 hours: {{ highest24Hours.created | date:'h:mm a' }} {{ highest24Hours.city }}, {{ highest24Hours.country }}: {{ highest24Hours.temperature }} °C</p>
+            <p>Lowest ever: {{ lowestEver.created | date:'MMM d, y h:mm a' }} {{ lowestEver.city }}, {{ lowestEver.country }}: {{ lowestEver.temperature }} °C / Highest ever: {{ highestEver.created | date:'MMM d, y h:mm a' }} {{ highestEver.city }}, {{ highestEver.country }}: {{ highestEver.temperature }} °C</p>
             </br>
-            <p>Dialog for current temp in all locations</p>
+            <div ng-controller="IndexTempDialog">
+                <md-content>
+                    <md-button ng-click="openTempDialog($event)">CURRENT TEMPERATURES</md-button>
+                </md-content>
+            </div>
       </div>
    </body>
 </html>
