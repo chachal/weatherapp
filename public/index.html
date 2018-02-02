@@ -53,8 +53,8 @@
       <br/>
       <div ng-controller="TempHistory" layout="row">
             <p>Lowest now: {{ currentMin.city }}, {{ currentMin.country }}: {{ currentMin.temperature }} °C / Highest now: {{ currentMax.city }}, {{ currentMax.country }}: {{ currentMax.temperature }} °C</p>
-            <p>Lowest in 24 hours: location/temp/date, Lowest ever: location/temp/date</p>
-            <p>Highest in 24 hours: location/temp/date, Highest ever: location/temp/date</p>
+            <p>Lowest in 24 hours: location/temp/date, Lowest ever: {{ lowestEver.created | date:'medium' }} {{ lowestEver.city }}, {{ lowestEver.country }}: {{ lowestEver.temperature }} °C</p>
+            <p>Highest in 24 hours: location/temp/date, Highest ever: {{ highestEver.created | date:'medium' }} {{ highestEver.city }}, {{ highestEver.country }}: {{ highestEver.temperature }} °C</p>
             </br>
             <p>Dialog for current temp in all locations</p>
       </div>

@@ -98,6 +98,8 @@ index.controller('TempHistory', function($scope, $http, GetLocationData) {
                     $scope.currentMax = locationList[i].latest;
                 }
             }
+            $scope.lowestEver = minimumTemperature(allData);
+            $scope.highestEver = maximumTemperature(allData);
         });
     });
 
