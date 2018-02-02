@@ -93,6 +93,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
       }
       return maxTemp.temperature;
   };
+
 });
 
 // add a temperature observation to the current location -----------------------------------
@@ -135,6 +136,22 @@ locationMod.controller('SubmitTemp', function($scope, $http) {
 
 locationMod.controller('TempHistoryGraph', function($scope) {
     $scope.name1 = '';
+});
+
+locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
+  $scope.openDialog = function($event) {
+      $mdDialog.show( {
+          templateUrl: 'tempHistoryList.tmpl.html',
+          parent: angular.element(document.body),
+          targetEvent: $event,
+          clickOutsideToClose: true,
+          scope: $scope,
+          preserveScope: true
+      })
+  }
+  $scope.close = function() {
+      $mdDialog.cancel();
+  }
 });
 
 locationMod.controller('TempHistoryList', function($scope, GetLocationData) {

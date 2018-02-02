@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="location">
+   <head>
+     <title>WeatherApp</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+     <script src="location.js"></script>
+   </head>
+   <body>
+     <md-dialog>
+       <md-dialog-content ng-cloak>
+         <div layout="row">
+           <h2>Temperature History</h2>
+             <md-content>
+               <form ng-submit="$event.preventDefault()">
+                 <div ng-controller="TempHistoryList">
+                   <table>
+                     <tr>
+                       <md-content>
+                         <th>
+                           <md-button ng-click="sortBy('created')">Date</md-button>
+                           <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                         <th>
+                           <md-button ng-click="sortBy('temperature')">Temperature</md-button>
+                           <span ng-show="property === 'temperature'" ng-class="{reverse: reverse}"></span>
+                         </th>
+                       </md-content>
+                     </tr>
+                     <tr ng-repeat="entry in entries | orderBy:property:reverse">
+                         <td>{{ entry.created | date:'medium'}}</td>
+                         <td>{{ entry.temperature }}</td>
+                     </tr>
+                   </table>
+                   <md-dialog-actions>
+                     <md-button ng-click="close()">CLOSE</md-button>
+                   </md-dialog-actions>
+                 </div>
+               </form>
+             </md-content>
+         </div>
+       </md-dialog-content>
+     </md-dialog>
+   </body>
+</html>
