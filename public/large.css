@@ -128,13 +128,13 @@ md-autocomplete {
     margin: auto;
 }
 
-input {
+md-input-container > label {
     color: white;
-    width: 30%;
 }
 
-.md-autocomplete-suggestions {
-    background-color: red;
+#input_2, #input_0 {
+    width: 75px;
+    background-color: white;
 }
 
 .temptable.index {
