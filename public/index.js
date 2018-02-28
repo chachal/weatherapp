@@ -48,6 +48,7 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             templateUrl: 'quickadd.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: $event,
+            focusOnOpen: false,
             scope: $scope,
             preserveScope: true,
             fullscreen: false
@@ -59,7 +60,7 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
 });
 
 // sets initial temperature in quick add dialog to zero, and submits the observation -----------------------------------
-index.controller('SubmitTemp', function($scope, $http) {
+index.controller('SubmitTemp', function($scope, $http, $mdDialog) {
     $scope.observation = {
         temperature: 0
     };
@@ -74,6 +75,7 @@ index.controller('SubmitTemp', function($scope, $http) {
         $http.post('/api/obsdata', entryData)
         .then(function(res, err) {
             $scope.updatePageData();
+            $mdDialog.cancel()
         })
     }
 });
@@ -85,6 +87,7 @@ index.controller('IndexTempDialog', function($scope, $mdDialog) {
           templateUrl: 'indexTempList.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
+          focusOnOpen: false,
           scope: $scope,
           preserveScope: true,
           fullscreen: false

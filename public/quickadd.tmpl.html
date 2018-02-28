@@ -38,11 +38,12 @@
                    </md-autocomplete>
                    <div ng-controller="SubmitTemp">
                        <md-input-container>
-                         <input type="number" placeholder="Temperature (°C)" name="temperature" ng-model="observation.temperature"/>
+                         <label id="templabel">Temperature (°C)</label>
+                         <input type="number" name="temperature" ng-model="observation.temperature"/>
                        </md-input-container>
                        <md-dialog-actions align="center">
                          <md-button class="orbutton" type="button" ng-click="cancel()">CANCEL</md-button>
-                         <md-button class="orbutton" ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine" ng-click="submitObservation(selectedLocation) && finish($event)">ADD</md-button>
+                         <md-button class="orbutton" ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine" ng-click="submitObservation(selectedLocation) && cancel() && finish($event)">ADD</md-button>
                        </md-dialog-actions>
                    </div>
                </form>

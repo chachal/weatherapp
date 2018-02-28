@@ -106,6 +106,7 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
           templateUrl: 'locpagetempadd.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
+          focusOnOpen: false,
           scope: $scope,
           preserveScope: true,
           fullscreen: false
@@ -117,7 +118,7 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
 });
 
 // sets initial temperature in add dialog to zero, and submits the observation -----------------------------------
-locationMod.controller('SubmitTemp', function($scope, $http) {
+locationMod.controller('SubmitTemp', function($scope, $http, $mdDialog) {
     $scope.observation = {
         temperature: 0
     };
@@ -132,6 +133,7 @@ locationMod.controller('SubmitTemp', function($scope, $http) {
         $http.post('/api/obsdata', entryData)
         .then(function(res, err) {
             $scope.updatePageData();
+            $mdDialog.cancel()
         })
 
     }
@@ -144,6 +146,7 @@ locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
           templateUrl: 'tempHistoryList.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
+          focusOnOpen: false,
           scope: $scope,
           preserveScope: true,
           fullscreen: false

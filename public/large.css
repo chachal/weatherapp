@@ -44,9 +44,9 @@ md-dialog {
 }
 
 .orbutton:not([disabled]):focus {
-    background-color: rgba(0, 0, 70, 1);
+    background-color: rgba(0, 70, 0, 1);
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
@@ -56,7 +56,7 @@ md-dialog {
 }
 
 .orbutton[disabled] {
-  background-color: rgba(0, 70, 0, 0.5);
+  background-color: rgba(90, 120, 90, 0.5);
   border: none;
   border-radius: 5px;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
@@ -126,9 +126,9 @@ md-autocomplete {
     margin: auto;
 }
 
-md-input-container .md-placeholder {
-  overflow: visible;
-  color; rgba(0, 0, 0, 1);
+#templabel {
+    color: white;
+    overflow: visible;
 }
 
 #input_2, #input_0 {
