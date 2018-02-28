@@ -87,8 +87,6 @@ md-dialog {
     width: 100%;
 }
 
-
-
 .libutton:not([disabled]):hover {
     background-color: rgba(0, 70, 0, 0.85);
     border: none;
@@ -128,12 +126,13 @@ md-autocomplete {
     margin: auto;
 }
 
-md-input-container > label {
-    color: white;
+md-input-container .md-placeholder {
+  overflow: visible;
+  color; rgba(0, 0, 0, 1);
 }
 
 #input_2, #input_0 {
-    width: 75px;
+    width: 50px;
     background-color: white;
 }
 
