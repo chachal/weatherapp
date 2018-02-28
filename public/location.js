@@ -138,10 +138,6 @@ locationMod.controller('SubmitTemp', function($scope, $http) {
     }
 });
 
-locationMod.controller('TempHistoryGraph', function($scope) {
-    $scope.name1 = '';
-});
-
 // opens dialog for list of temperature history for the current location -----------------------------------
 locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
   $scope.openDialog = function($event) {

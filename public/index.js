@@ -74,7 +74,7 @@ index.controller('SubmitTemp', function($scope, $http) {
         }
         $http.post('/api/obsdata', entryData)
         .then(function(res, err) {
-            // flash text or something
+            $scope.updatePageData();
         })
     }
 });
@@ -92,37 +92,40 @@ index.controller('IndexTempDialog', function($scope, $mdDialog) {
           fullscreen: false
       })
   }
-  $scope.close = function() {
+  $scope.cancel = function() {
       $mdDialog.cancel();
   }
 });
 
 // shows min and max temperatures from the last 24 hours and from all entries, and current temperature for all observation points ) -----------------------------------
 index.controller('TempHistory', function($scope, $http, GetLocationData) {
-    var allLocations = GetLocationData.getLocations();
-    allLocations.then(function(locationList) {
-        var allLocsData = GetLocationData.getData();
-        allLocsData.then(function(allData) {
-            locationList = sortToLocation(locationList, allData);
-            locationList = findLatest(locationList);
-            $scope.currentMin = locationList[0].latest;
-            $scope.currentMax = locationList[0].latest;
-            for (i=0; i < locationList.length; i++) {
-                if (locationList[i].latest && locationList[i].latest.temperature < $scope.currentMin.temperature) {
-                    $scope.currentMin = locationList[i].latest;
-                }
-                if (locationList[i].latest && locationList[i].latest.temperature > $scope.currentMax.temperature) {
-                    $scope.currentMax = locationList[i].latest;
-                }
-            }
-            $scope.lowestEver = minimumTemperature(allData);
-            $scope.highestEver = maximumTemperature(allData);
-            var last24Hours = getLast24Hours(allData);
-            $scope.lowest24Hours = minimumTemperature(last24Hours);
-            $scope.highest24Hours = maximumTemperature(last24Hours);
-        });
-        $scope.currentList = locationList;
-    });
+  $scope.updatePageData = function() {
+      var allLocations = GetLocationData.getLocations();
+      allLocations.then(function(locationList) {
+          var allLocsData = GetLocationData.getData();
+          allLocsData.then(function(allData) {
+              locationList = sortToLocation(locationList, allData);
+              locationList = findLatest(locationList);
+              $scope.currentMin = locationList[0].latest;
+              $scope.currentMax = locationList[0].latest;
+              for (i=0; i < locationList.length; i++) {
+                  if (locationList[i].latest && locationList[i].latest.temperature < $scope.currentMin.temperature) {
+                      $scope.currentMin = locationList[i].latest;
+                  }
+                  if (locationList[i].latest && locationList[i].latest.temperature > $scope.currentMax.temperature) {
+                      $scope.currentMax = locationList[i].latest;
+                  }
+              }
+              $scope.lowestEver = minimumTemperature(allData);
+              $scope.highestEver = maximumTemperature(allData);
+              var last24Hours = getLast24Hours(allData);
+              $scope.lowest24Hours = minimumTemperature(last24Hours);
+              $scope.highest24Hours = maximumTemperature(last24Hours);
+          });
+          $scope.currentList = locationList;
+      });
+  };
+  $scope.updatePageData();
 
   // sort entries to locationList by location
   function sortToLocation(locationList, allData) {
