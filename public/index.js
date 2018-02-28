@@ -1,10 +1,6 @@
 // index page -----------------------------------
 var index = angular.module('index', ['ngMaterial'])
 
-index.controller('IndexMap', function($scope) {
-    $scope.name1 = '';
-});
-
 // retrieves temperature data from database -----------------------------------
 index.factory('GetLocationData', function($location, $http) {
     function getData() {
@@ -52,7 +48,10 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             templateUrl: 'quickadd.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: $event,
-            clickOutsideToClose:true
+            clickOutsideToClose:true,
+            scope: $scope,
+            preserveScope: true,
+            fullscreen: false
         })
     };
     $scope.cancel = function() {
@@ -89,7 +88,8 @@ index.controller('IndexTempDialog', function($scope, $mdDialog) {
           targetEvent: $event,
           clickOutsideToClose: true,
           scope: $scope,
-          preserveScope: true
+          preserveScope: true,
+          fullscreen: false
       })
   }
   $scope.close = function() {

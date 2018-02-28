@@ -108,7 +108,8 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
           targetEvent: $event,
           clickOutsideToClose: true,
           scope: $scope,
-          preserveScope: true
+          preserveScope: true,
+          fullscreen: false
       })
   }
   $scope.cancel = function() {
@@ -150,7 +151,8 @@ locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
           targetEvent: $event,
           clickOutsideToClose: true,
           scope: $scope,
-          preserveScope: true
+          preserveScope: true,
+          fullscreen: false
       })
   }
   $scope.close = function() {

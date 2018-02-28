@@ -1,0 +1,99 @@
+div {
+}
+
+.title {
+    color: green;
+}
+
+.orbutton {
+    background-color: rgba(0, 200, 0, 0.75);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    outline: none;
+    padding: 20px 25px;
+    text-align: center;
+    transition-duration: 0.25s;
+    cursor: pointer;
+}
+
+.orbutton:not([disabled]):hover {
+    background-color: rgba(0, 0, 200, 0.75);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    outline: none;
+    padding: 23px 28px;
+    text-align: center;
+    text-align: center;
+}
+
+.orbutton[disabled] {
+    background-color: rgba(0, 200, 0, 0.5);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    outline: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-align: center;
+}
+
+.input {
+    background-color: green;
+}
+
+.libutton {
+    background-color: rgba(0, 200, 0, 0.75);
+    border: none;
+    color: white;
+    height: 60px;
+    outline: none;
+    width: 200px;
+}
+
+.libutton:not([disabled]):hover {
+    background-color: rgba(0, 200, 0, 0.75);
+    border: none;
+    color: white;
+    height: 60px;
+    outline: none;
+    width: 200px;
+}
+
+.libutton.left {
+    border-radius: 5px 0px 0px 5px;
+    color: white;
+    outline: none;
+}
+
+.libutton.middle {
+    border-left: 1px solid rgba(0, 200, 0, 0.75);
+    border-right: 1px solid rgba(0, 200, 0, 0.75);
+    color: white;
+    outline: none;
+}
+
+.libutton.right {
+    border-radius: 0px 5px 5px 0px;
+    color: white;
+    outline: none;
+}
+
+table {
+    padding: 0px;
+    margin: 0px auto;
+}
+
+tr {
+    height: 
+}
+
+th {
+    height: 60px;
+    padding: 0px;
+    width: 200px;
+}

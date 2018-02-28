@@ -22,14 +22,14 @@
                      <tr>
                        <md-content>
                          <md-dialog-actions>
-                           <md-button ng-click="close()">CLOSE</md-button>
+                           <md-button class="orbutton" ng-click="close()">CLOSE</md-button>
                          </md-dialog-actions>
                          <th>
-                           <md-button ng-click="sortBy('created')">Date</md-button>
+                           <md-button class="libutton left" ng-click="sortBy('created')">Date</md-button>
                            <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>
                          </th>
                          <th>
-                           <md-button ng-click="sortBy('temperature')">Temperature</md-button>
+                           <md-button class="libutton right" ng-click="sortBy('temperature')">Temperature</md-button>
                            <span ng-show="property === 'temperature'" ng-class="{reverse: reverse}"></span>
                          </th>
                        </md-content>
@@ -40,7 +40,7 @@
                      </tr>
                    </table>
                    <md-dialog-actions>
-                     <md-button ng-click="close()">CLOSE</md-button>
+                     <md-button class="orbutton" ng-click="close()">CLOSE</md-button>
                    </md-dialog-actions>
                  </div>
                </form>

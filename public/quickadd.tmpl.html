@@ -41,8 +41,8 @@
                          <input type="number" placeholder="Temperature (°C)" name="temperature" ng-model="observation.temperature"/>
                        </md-input-container>
                        <md-dialog-actions>
-                         <md-button type="button" ng-click="cancel()">CANCEL</md-button>
-                         <md-button ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine" ng-click="submitObservation(selectedLocation) && finish($event)">ADD</md-button>
+                         <md-button class="orbutton" type="button" ng-click="cancel()">CANCEL</md-button>
+                         <md-button class="orbutton" ng-disabled="quickAddForm.$invalid || quickAddForm.$pristine" ng-click="submitObservation(selectedLocation) && finish($event)">ADD</md-button>
                        </md-dialog-actions>
                    </div>
                </form>
