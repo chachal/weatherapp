@@ -39,14 +39,14 @@
                            <span ng-show="property === 'temperature'" ng-class="{reverse: reverse}"></span>
                          </th>
                      </tr>
-                     <tr ng-repeat="entry in currentData | orderBy:property:reverse">
+                     <tr class="tempentry" ng-repeat="entry in currentData | orderBy:property:reverse">
                          <td>{{ entry.created | date:'MMM d, y h:mm a' }}</td>
                          <td>{{ entry.city }}</td>
                          <td>{{ entry.country }}</td>
                          <td>{{ entry.temperature }} °C</td>
                      </tr>
                    </table>
-                   <md-dialog-actions>
+                   <md-dialog-actions align="center">
                      <md-button class="orbutton" ng-click="cancel()">CLOSE</md-button>
                    </md-dialog-actions>
                  </div>

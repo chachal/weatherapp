@@ -48,7 +48,6 @@ index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
             templateUrl: 'quickadd.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: $event,
-            clickOutsideToClose:true,
             scope: $scope,
             preserveScope: true,
             fullscreen: false
@@ -86,7 +85,6 @@ index.controller('IndexTempDialog', function($scope, $mdDialog) {
           templateUrl: 'indexTempList.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
-          clickOutsideToClose: true,
           scope: $scope,
           preserveScope: true,
           fullscreen: false

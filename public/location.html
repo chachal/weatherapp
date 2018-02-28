@@ -17,15 +17,15 @@
    <body>
      <div ng-controller="LocationAndTempData">
        <md-content>
-         <md-button class="orbutton" ng-click="goToIndex()">BACK TO INDEX</md-button>
+         <md-button class="orbutton" ng-click="goToIndex()">BACK TO FRONT PAGE</md-button>
        </md-content>
-           <h1 class="title">{{ currentCity }}, {{ currentCountry }}</h1>
+           <h1 class="title large">{{ currentCity }}, {{ currentCountry }}</h1>
            <h2 class="title">Current temperature: {{ latestTemp }}</h2>
-           <h2 class="title">Highest</h2>
+           <h2 class="title">Highest temperature</h2>
            <table class="temptable location">
                <tr>
-                   <th>in last 24 hours</th>
-                   <th>ever</th>
+                   <th>in the last 24 hours:</th>
+                   <th>ever:</th>
                </tr>
                <tr>
                    <td class="high24 location">{{ maxTempInDay.created | date:'h:mm a' }}</td>
@@ -36,11 +36,11 @@
                    <td class="temp">{{ maxTempEver.temperature }} °C</td>
                </tr>
            </table>
-           <h2 class="title">Lowest</h2>
+           <h2 class="title">Lowest temperature</h2>
            <table class="temptable location">
                <tr>
-                   <th>in last 24 hours</th>
-                   <th>ever</th>
+                   <th>in the last 24 hours:</th>
+                   <th>ever:</th>
                </tr>
                <tr>
                    <td class="low24 location">{{ minTempInDay.created | date:'h:mm a' }}</td>

@@ -16,7 +16,7 @@
    </head>
    <body>
       <div ng-controller="LocationSearch">
-        <h1 class="title">WeatherApp</h1>
+        <h1 class="title large">WeatherApp</h1>
         <md-content>
           <form ng-submit="$event.preventDefault()" name="locationSearchField">
               <md-autocomplete
@@ -48,12 +48,12 @@
               <md-button class="orbutton" ng-click="openAddDialog($event)">ADD OBSERVATION</md-button>
           </md-content>
       </div>
-            <h2 class="title">Highest</h2>
+            <h2 class="title">Highest temperature</h2>
             <table class="temptable index">
                 <tr>
-                    <th>now</th>
-                    <th>in last 24 hours</th>
-                    <th>ever</th>
+                    <th>now:</th>
+                    <th>in the last 24 hours:</th>
+                    <th>ever:</th>
                 </tr>
                 <tr>
                     <td class="highnow index">{{ currentMax.city }}, {{ currentMax.country }}</td>
@@ -66,12 +66,12 @@
                     <td class="temp">{{ highestEver.temperature }} °C</td>
                 </tr>
             </table>
-            <h2 class="title">Lowest</h2>
+            <h2 class="title">Lowest temperature</h2>
             <table class="temptable index">
                 <tr>
-                    <th>now</th>
-                    <th>in last 24 hours</th>
-                    <th>ever</th>
+                    <th>now:</th>
+                    <th>in the last 24 hours:</th>
+                    <th>ever:</th>
                 </tr>
                 <tr>
                     <td class="lownow index">{{ currentMin.city }}, {{ currentMin.country }}</td>

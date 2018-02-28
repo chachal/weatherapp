@@ -106,7 +106,6 @@ locationMod.controller('AddTempDialog', function($scope, $mdDialog) {
           templateUrl: 'locpagetempadd.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
-          clickOutsideToClose: true,
           scope: $scope,
           preserveScope: true,
           fullscreen: false
@@ -145,7 +144,6 @@ locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
           templateUrl: 'tempHistoryList.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: $event,
-          clickOutsideToClose: true,
           scope: $scope,
           preserveScope: true,
           fullscreen: false
