@@ -151,7 +151,7 @@ locationMod.controller('TempHistoryDialog', function($scope, $mdDialog) {
           fullscreen: false
       })
   }
-  $scope.close = function() {
+  $scope.cancel = function() {
       $mdDialog.cancel();
   }
 });
