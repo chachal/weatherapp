@@ -10,8 +10,9 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
      <script src="location.js"></script>
-     <link rel="stylesheet" href="small.css">
-     <link rel="stylesheet" href="large.css">
+     <link rel="stylesheet" href="angular-material.css">
+     <link rel="stylesheet" media='screen and (max-width: 700px)'href="small.css">
+     <link rel="stylesheet" media='screen and (min-width: 701px)'href="large.css">
    </head>
    <body>
      <div ng-controller="LocationAndTempData">
@@ -19,10 +20,37 @@
          <md-button class="orbutton" ng-click="goToIndex()">BACK TO INDEX</md-button>
        </md-content>
            <h1 class="title">{{ currentCity }}, {{ currentCountry }}</h1>
-           <h2>Current temperature: {{ latestTemp }}</h2>
-               <p>Lowest in 24 hours: {{ minTempInDay }} / Lowest ever: {{ minTempEver }} </p>
-               <p>Highest in 24 hours: {{ maxTempInDay }} / Highest ever: {{ maxTempEver }} </p>
-         <br/>
+           <h2 class="title">Current temperature: {{ latestTemp }}</h2>
+           <h2 class="title">Highest</h2>
+           <table class="temptable">
+               <tr>
+                   <th>in last 24 hours</th>
+                   <th>ever</th>
+               </tr>
+               <tr>
+                   <td class="high24 location">{{ maxTempInDay.created | date:'h:mm a' }}</td>
+                   <td class="highever location">{{ maxTempEver.created | date:'MMM d, y h:mm a' }}</td>
+               </tr>
+               <tr>
+                   <td class="temp">{{ maxTempInDay.temperature }} °C</td>
+                   <td class="temp">{{ maxTempEver.temperature }} °C</td>
+               </tr>
+           </table>
+           <h2 class="title">Lowest</h2>
+           <table class="temptable">
+               <tr>
+                   <th>in last 24 hours</th>
+                   <th>ever</th>
+               </tr>
+               <tr>
+                   <td class="low24 location">{{ minTempInDay.created | date:'h:mm a' }}</td>
+                   <td class="lowever location">{{ minTempEver.created | date:'MMM d, y h:mm a' }}</td>
+               </tr>
+               <tr>
+                   <td class="temp">{{ minTempInDay.temperature }} °C</td>
+                   <td class="temp">{{ minTempEver.temperature }} °C</td>
+               </tr>
+           </table>
          <div ng-controller="AddTempDialog">
            <md-content>
              <md-button class="orbutton" ng-click="openDialog($event)">ADD OBSERVATION</md-button>

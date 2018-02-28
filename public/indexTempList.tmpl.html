@@ -13,15 +13,14 @@
    <body>
      <md-dialog>
        <md-dialog-content ng-cloak>
-         <div layout="row">
-           <h2>Current Temperatures</h2>
+         <div>
+           <h2 class="title">Current Temperatures</h2>
              <md-content>
                <form ng-submit="$event.preventDefault()">
                  <div ng-controller="IndexTempList">
                    <md-dialog-actions>
-                     <md-button class="orbutton" ng-click="close()">CLOSE</md-button>
                    </md-dialog-actions>
-                   <table>
+                   <table class="listtable">
                      <tr>
                          <th>
                            <md-button class="libutton left" ng-click="sortBy('created')">Date</md-button>
@@ -44,7 +43,7 @@
                          <td>{{ entry.created | date:'MMM d, y h:mm a' }}</td>
                          <td>{{ entry.city }}</td>
                          <td>{{ entry.country }}</td>
-                         <td>{{ entry.temperature }}</td>
+                         <td>{{ entry.temperature }} °C</td>
                      </tr>
                    </table>
                    <md-dialog-actions>

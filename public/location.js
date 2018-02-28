@@ -54,16 +54,16 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
                   }
               }
               if (last24Hours.length > 0) {
-                  $scope.minTempInDay = minimumTemperature(last24Hours) + " °C";
-                  $scope.maxTempInDay = maximumTemperature(last24Hours) + " °C";
+                  $scope.minTempInDay = minimumTemperature(last24Hours);
+                  $scope.maxTempInDay = maximumTemperature(last24Hours);
               }
               else {
                   $scope.minTempInDay = "No data yet";
                   $scope.maxTempInDay = "No data yet";
               };
               if (currentData.locationData.length > 0) {
-                  $scope.minTempEver = minimumTemperature(currentData.locationData) + " °C";
-                  $scope.maxTempEver = maximumTemperature(currentData.locationData) + " °C";
+                  $scope.minTempEver = minimumTemperature(currentData.locationData);
+                  $scope.maxTempEver = maximumTemperature(currentData.locationData);
               }
               else {
                   $scope.minTempEver = "No data yet";
@@ -82,7 +82,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
               minTemp = tmp;
           }
       }
-      return minTemp.temperature;
+      return minTemp;
   };
 
   // returns the maximum temperature
@@ -94,7 +94,7 @@ locationMod.controller('LocationAndTempData', function($scope, $window, GetLocat
               maxTemp = tmp;
           }
       }
-      return maxTemp.temperature;
+      return maxTemp;
   };
 
 });

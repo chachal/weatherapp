@@ -10,8 +10,9 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
      <script src="index.js"></script>
+     <link rel="stylesheet" href="angular-material.css">
      <link rel="stylesheet" media='screen and (max-width: 700px)'href="small.css">
-     <link rel="stylesheet" media='screen and (min-width: 701px)' href="large.css">
+    <link rel="stylesheet" media='screen and (min-width: 701px)'href="large.css">
    </head>
    <body>
       <div ng-controller="LocationSearch">
@@ -25,7 +26,7 @@
                 md-search-text="searchText"
                 md-search-text-change="searchTextChange(searchText)"
                 md-clear-button="false"
-                md-dropdown-items="2"
+                md-dropdown-items="3"
                 md-dropdown-position="bottom"
                 md-require-match="true"
                 md-selected-item="selectedLocation"
@@ -41,21 +42,48 @@
           </form>
         </md-content>
       </div>
-      <br/>
       <div ng-controller="QuickAddTempDialog">
           <md-content>
               <md-button class="orbutton" ng-click="openAddDialog($event)">ADD OBSERVATION</md-button>
           </md-content>
       </div>
-      <br/>
       <div ng-controller="TempHistory">
-            <p>Lowest now: {{ currentMin.city }}, {{ currentMin.country }}: {{ currentMin.temperature }} °C</p>
-            <p>Highest now: {{ currentMax.city }}, {{ currentMax.country }}: {{ currentMax.temperature }} °C</p>
-            <p>Lowest in 24 hours: {{ lowest24Hours.created | date:'h:mm a' }} {{ lowest24Hours.city }}, {{ lowest24Hours.country }}: {{ lowest24Hours.temperature }} °C</p>
-            <p>Highest in 24 hours: {{ highest24Hours.created | date:'h:mm a' }} {{ highest24Hours.city }}, {{ highest24Hours.country }}: {{ highest24Hours.temperature }} °C</p>
-            <p>Lowest ever: {{ lowestEver.created | date:'MMM d, y h:mm a' }} {{ lowestEver.city }}, {{ lowestEver.country }}: {{ lowestEver.temperature }} °C</p>
-            <p>Highest ever: {{ highestEver.created | date:'MMM d, y h:mm a' }} {{ highestEver.city }}, {{ highestEver.country }}: {{ highestEver.temperature }} °C</p>
-            </br>
+            <h2 class="title">Highest</h2>
+            <table class="temptable">
+                <tr>
+                    <th>now</th>
+                    <th>in last 24 hours</th>
+                    <th>ever</th>
+                </tr>
+                <tr>
+                    <td class="highnow index">{{ currentMax.city }}, {{ currentMax.country }}</td>
+                    <td class="high24 index">{{ highest24Hours.created | date:'h:mm a' }} {{ highest24Hours.city }}, {{ highest24Hours.country }}</td>
+                    <td class="highever index">{{ highestEver.created | date:'MMM d, y h:mm a' }} {{ highestEver.city }}, {{ highestEver.country }}</td>
+                </tr>
+                <tr>
+                    <td class="temp">{{ currentMax.temperature }} °C</td>
+                    <td class="temp">{{ highest24Hours.temperature }} °C</td>
+                    <td class="temp">{{ highestEver.temperature }} °C</td>
+                </tr>
+            </table>
+            <h2 class="title">Lowest</h2>
+            <table class="temptable">
+                <tr>
+                    <th>now</th>
+                    <th>in last 24 hours</th>
+                    <th>ever</th>
+                </tr>
+                <tr>
+                    <td class="lownow index">{{ currentMin.city }}, {{ currentMin.country }}</td>
+                    <td class="low24 index">{{ lowest24Hours.created | date:'h:mm a' }} {{ lowest24Hours.city }}, {{ lowest24Hours.country }}</td>
+                    <td class="lowever index">{{ lowestEver.created | date:'MMM d, y h:mm a' }} {{ lowestEver.city }}, {{ lowestEver.country }}</td>
+                </tr>
+                <tr>
+                    <td class="temp">{{ currentMin.temperature }} °C</td>
+                    <td class="temp">{{ lowest24Hours.temperature }} °C</td>
+                    <td class="temp">{{ lowestEver.temperature }} °C</td>
+                </tr>
+            </table>
             <div ng-controller="IndexTempDialog">
                 <md-content>
                     <md-button class="orbutton" ng-click="openTempDialog($event)">CURRENT TEMPERATURES</md-button>

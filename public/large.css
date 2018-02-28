@@ -1,32 +1,60 @@
-div {
+body, md-content, md-dialog-content, md-dialog {
+    background-color: lightblue;
+    text-align: center;
+    padding: 5px;
 }
 
 .title {
-    color: green;
+    background-color: lightblue;
+    text-align: center;
+}
+
+md-dialog {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.highnow.index {
+    text-align: left;
+}
+
+.lownow.index {
+    color: blue;
 }
 
 .orbutton {
-    background-color: rgba(0, 200, 0, 0.75);
+    background-color: rgba(0, 200, 0, 1);
     border: none;
     border-radius: 5px;
-    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
     padding: 20px 25px;
     text-align: center;
     transition-duration: 0.25s;
     cursor: pointer;
+    margin: 10px 0px;
 }
 
 .orbutton:not([disabled]):hover {
-    background-color: rgba(0, 0, 200, 0.75);
+    background-color: rgba(0, 0, 200, 1);
     border: none;
-    border-radius: 5px;
-    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    padding: 23px 28px;
+    padding: 20px 25px;
     text-align: center;
+}
+
+.orbutton:not([disabled]):focus {
+    background-color: rgba(0, 0, 200, 1);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
+    color: white;
+    outline: none;
+    padding: 20px 25px;
     text-align: center;
 }
 
@@ -34,16 +62,11 @@ div {
     background-color: rgba(0, 200, 0, 0.5);
     border: none;
     border-radius: 5px;
-    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    padding: 15px 20px;
+    padding: 20px 25px;
     text-align: center;
-    text-align: center;
-}
-
-.input {
-    background-color: green;
 }
 
 .libutton {
@@ -52,51 +75,85 @@ div {
     color: white;
     height: 60px;
     outline: none;
-    width: 200px;
+    margin: auto;
+    width: 100%;
 }
 
 .libutton:not([disabled]):hover {
-    background-color: rgba(0, 200, 0, 0.75);
+    background-color: rgba(0, 200, 0, 0.85);
     border: none;
     color: white;
     height: 60px;
     outline: none;
-    width: 200px;
+    margin: auto;
+    width: 100%;
 }
 
 .libutton.left {
     border-radius: 5px 0px 0px 5px;
-    color: white;
-    outline: none;
+}
+
+.libutton.left:not([disabled]):hover {
+    border-radius: 5px 0px 0px 5px;
 }
 
 .libutton.middle {
-    border-left: 1px solid rgba(0, 200, 0, 0.75);
-    border-right: 1px solid rgba(0, 200, 0, 0.75);
-    color: white;
-    outline: none;
+    border-radius: 0px 0px 0px 0px;
+}
+
+.libutton.middle:not([disabled]):hover {
+    border-radius: 0px 0px 0px 0px;
 }
 
 .libutton.right {
     border-radius: 0px 5px 5px 0px;
-    color: white;
-    outline: none;
+}
+
+.libutton.right:not([disabled]):hover {
+    border-radius: 0px 5px 5px 0px;
+}
+
+md-autocomplete {
+    width: 50%;
+    margin: auto;
+}
+
+input {
+    background-color: rgba(200, 200, 200, 1);
+    width: 30%;
+}
+
+.md-autocomplete-suggestions {
+    background-color: red;
+}
+
+.temptable {
+    width: 70%;
+    margin: auto;
+}
+
+.temptable td {
+    width: 33%;
+    margin: auto;
 }
 
 table {
-    height: 10%;
-    width: 40%;
+    border-collapse: collapse;
+    empty-cells: hide;
+}
+
+.listtable tr:nth-child(odd) {
+    background-color: lightgreen;
 }
 
 td {
   height: 10%;
   padding: 10px 0px;
-  text-align: center;
-  width: 25%;
+  max-width: 25%;
 }
 
 th {
     height: 10%;
     padding: 0px;
-    width: 25%;
+    max-width: 25%;
 }

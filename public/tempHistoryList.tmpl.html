@@ -13,17 +13,14 @@
    <body>
      <md-dialog>
        <md-dialog-content ng-cloak>
-         <div layout="row">
-           <h2>Temperature History</h2>
+         <div>
+           <h2 class="title">Temperature History</h2>
              <md-content>
                <form ng-submit="$event.preventDefault()">
                  <div ng-controller="TempHistoryList">
-                   <table>
+                   <table class="listtable">
                      <tr>
                        <md-content>
-                         <md-dialog-actions>
-                           <md-button class="orbutton" ng-click="close()">CLOSE</md-button>
-                         </md-dialog-actions>
                          <th>
                            <md-button class="libutton left" ng-click="sortBy('created')">Date</md-button>
                            <span ng-show="property === 'created'" ng-class="{reverse: reverse}"></span>
@@ -36,7 +33,7 @@
                      </tr>
                      <tr ng-repeat="entry in entries | orderBy:property:reverse">
                          <td>{{ entry.created | date:'medium' }}</td>
-                         <td>{{ entry.temperature }}</td>
+                         <td>{{ entry.temperature }} °C</td>
                      </tr>
                    </table>
                    <md-dialog-actions>
