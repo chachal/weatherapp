@@ -117,11 +117,23 @@ index.controller('TempHistory', function($scope, $http, GetLocationData) {
                       $scope.currentMax = locationList[i].latest;
                   }
               }
-              $scope.lowestEver = minimumTemperature(allData);
-              $scope.highestEver = maximumTemperature(allData);
-              var last24Hours = getLast24Hours(allData);
-              $scope.lowest24Hours = minimumTemperature(last24Hours);
-              $scope.highest24Hours = maximumTemperature(last24Hours);
+              if (allData) {
+                  $scope.lowestEver = minimumTemperature(allData);
+                  $scope.highestEver = maximumTemperature(allData);
+                  var last24Hours = getLast24Hours(allData);
+              }
+              else {
+                  $scope.lowestEver = "No data yet";
+                  $scope.highestEver = "No data yet";
+              };
+              if (last24Hours.length > 0) {
+                  $scope.lowest24Hours = minimumTemperature(last24Hours);
+                  $scope.highest24Hours = maximumTemperature(last24Hours);
+              }
+              else {
+                  $scope.lowest24Hours = "No data yet";
+                  $scope.highest24Hours = "No data yet";
+              };
           });
           $scope.currentList = locationList;
       });
