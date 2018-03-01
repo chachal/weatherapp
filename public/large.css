@@ -5,10 +5,19 @@ body, md-content, md-dialog-content, md-dialog-actions, md-dialog {
     padding: 5px;
 }
 
-.title {
+div {
+    font-size: 20px;
+}
 
+.title {
     text-align: center;
     padding: 10px;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.title.large {
+    font-size: 50px;
 }
 
 md-dialog {
@@ -22,12 +31,14 @@ md-dialog {
     border-radius: 5px;
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
+    font-size: 20px;
+    font-weight: bolder;
     outline: none;
     text-align: center;
     transition-duration: 0.25s;
     cursor: pointer;
-    width: 250px;
-    height: 60px;
+    width: 350px;
+    height: 80px;
     margin: 10px 0px;
 }
 
@@ -38,8 +49,8 @@ md-dialog {
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    width: 250px;
-    height: 60px;
+    width: 350px;
+    height: 80px;
     text-align: center;
 }
 
@@ -50,8 +61,8 @@ md-dialog {
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    width: 250px;
-    height: 60px;
+    width: 350px;
+    height: 80px;
     text-align: center;
 }
 
@@ -62,8 +73,8 @@ md-dialog {
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
   color: white;
   outline: none;
-  width: 250px;
-  height: 60px;
+  width: 350px;
+  height: 80px;
   text-align: center;
 }
 
@@ -72,6 +83,8 @@ md-dialog {
     border: none;
     color: white;
     height: 60px;
+    font-size: 20px;
+    font-weight: bolder;
     outline: none;
     margin: auto;
     width: 100%;
@@ -132,19 +145,26 @@ md-autocomplete {
 }
 
 #input_2, #input_0 {
+    margin 50px 0px;
     width: 50px;
     background-color: white;
+}
+
+table {
+    margin-bottom: 20px;
 }
 
 .temptable.index {
     border-collapse: collapse;
     empty-cells: hide;
-    width: 50%;
+    width: 60%;
     margin: auto;
     max-width: 900px;
 }
 
-.temptable.index td {
+.temptable.index td, .temptable.index th {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
     width: 33%;
     margin: auto;
     padding: 20px 0px;
@@ -153,12 +173,14 @@ md-autocomplete {
 .temptable.location {
     border-collapse: collapse;
     empty-cells: hide;
-    width: 40%;
+    width: 50%;
     margin: auto;
     max-width: 700px;
 }
 
-.temptable.location td {
+.temptable.location td, .temptable.location th{
+    border-left: 1px solid white;
+    border-right: 1px solid white;
     width: 20%;
     margin: auto;
     padding: 20px 0px;

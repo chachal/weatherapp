@@ -41,7 +41,7 @@ index.controller('LocationSearch', function($scope, $http, $window) {
   }
 });
 
-// dialog for quicly adding observations to a selected location -----------------------------------
+// dialog for quickly adding observations to a selected location -----------------------------------
 index.controller('QuickAddTempDialog', function($scope, $mdDialog) {
     $scope.openAddDialog = function($event) {
         $mdDialog.show( {

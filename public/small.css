@@ -1,52 +1,98 @@
-div, p, md-content {
-    background-color: lightblue;
+body, md-content, md-dialog-content, md-dialog-actions, md-dialog {
+    background-color: black;
+    color: white;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
+}
+
+div {
+    font-size: 25px;
 }
 
 .title {
-    background-color: lightblue;
     text-align: center;
+    padding: 10px;
+    font-size: 35px;
+    margin-top: 50px;
 }
 
-.md-button {
-    background-color: rgba(0, 200, 0, 1);
+.title.large {
+    font-size: 55px;
+}
+
+md-dialog {
+    width: 90%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.orbutton {
+    background-color: rgba(0, 70, 0, 1);
     border: none;
     border-radius: 5px;
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
+    font-size: 30px;
+    font-weight: bolder;
     outline: none;
-    padding: 20px 25px;
     text-align: center;
     transition-duration: 0.25s;
     cursor: pointer;
+    width: 80%;
+    height: 100px;
     margin: 10px 0px;
 }
 
-.md-button:not([disabled]):hover {
-    background-color: rgba(0, 0, 200, 1);
+.orbutton:not([disabled]):hover {
+    background-color: rgba(0, 0, 70, 1);
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    padding: 21px 26px;
+    width: 80%;
+    height: 100px;
     text-align: center;
 }
 
-.md-button[disabled] {
-    background-color: rgba(0, 200, 0, 0.5);
+.orbutton:not([disabled]):focus {
+    background-color: rgba(0, 70, 0, 1);
     border: none;
     border-radius: 5px;
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
     color: white;
     outline: none;
-    padding: 20px 25px;
+    width: 80%;
+    height: 100px;
     text-align: center;
+}
+
+.orbutton[disabled] {
+  background-color: rgba(90, 120, 90, 0.5);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  outline: none;
+  width: 80%;
+  height: 100px;
+  text-align: center;
 }
 
 .libutton {
-    background-color: rgba(0, 200, 0, 0.75);
+    background-color: rgba(0, 70, 0, 0.75);
+    border: none;
+    color: white;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bolder;
+    outline: none;
+    margin: auto;
+    width: 100%;
+}
+
+.libutton {
+    background-color: rgba(0, 70, 0, 0.75);
     border: none;
     color: white;
     height: 60px;
@@ -56,7 +102,7 @@ div, p, md-content {
 }
 
 .libutton:not([disabled]):hover {
-    background-color: rgba(0, 200, 0, 0.85);
+    background-color: rgba(0, 70, 0, 0.85);
     border: none;
     color: white;
     height: 60px;
@@ -89,24 +135,75 @@ div, p, md-content {
     border-radius: 0px 5px 5px 0px;
 }
 
-#input-0 {
-    width: 20%;
+md-autocomplete {
+    width: 80%;
+    margin: auto;
+}
+
+#templabel {
+    color: white;
+    overflow: visible;
+}
+
+#input_2, #input_0 {
+    margin 50px 0px;
+    width: 50px;
+    background-color: white;
 }
 
 table {
+    margin-bottom: 100px;
+}
+
+.temptable.index {
+    border-collapse: collapse;
     empty-cells: hide;
-    margin: auto;
     width: 90%;
+    margin: auto;
+    max-width: 900px;
 }
 
-td {
+.temptable.index td, .temptable.index th {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    width: 33%;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+.temptable.location {
+    border-collapse: collapse;
+    empty-cells: hide;
+    width: 90%;
+    margin: auto;
+    max-width: 700px;
+}
+
+.temptable.location td, .temptable.location th{
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    width: 50%;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+.listtable {
+    border-collapse: collapse;
+    empty-cells: hide;
+}
+
+.tempentry:nth-child(odd) {
+    background-color: rgba(10, 10, 10, 1);
+}
+
+.listtable td {
   height: 10%;
-  padding: 5px 0px;
-  max-width: 25%;
+  padding: 10px 0px;
+  width: 25%;
 }
 
-th {
+.listtable th {
     height: 10%;
     padding: 0px;
-    max-width: 25%;
+    width: 25%;
 }
