@@ -136,6 +136,7 @@ md-dialog {
 
 md-autocomplete {
     width: 50%;
+    font-size: 30px;
     margin: auto;
 }
 
@@ -148,10 +149,6 @@ md-autocomplete {
     margin 50px 0px;
     width: 50px;
     background-color: white;
-}
-
-table {
-    margin-bottom: 20px;
 }
 
 .temptable.index {

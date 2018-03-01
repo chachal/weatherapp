@@ -151,10 +151,6 @@ md-autocomplete {
     background-color: white;
 }
 
-table {
-    margin-bottom: 100px;
-}
-
 .temptable.index {
     border-collapse: collapse;
     empty-cells: hide;
